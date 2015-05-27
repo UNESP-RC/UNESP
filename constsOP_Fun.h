@@ -43,3 +43,126 @@ char SW_OP[] = "101011";
 //Campo OP Code para Funções tipo J
 char J_OP[] = "000010";
 char JAL_OP[] = "000011";
+
+//Função para retornar o código binário de cada função
+char* getFunction(char* OPCode){
+  if(strcmp(OPCode, "SLL") == 0){
+     return SLL_FUN;               
+  }
+  else if(strcmp(OPCode, "MFC0") == 0){
+     return MFC0_FUN;               
+  }
+  else if(strcmp(OPCode, "SRL") == 0){
+     return SRL_FUN;               
+  }
+  else if(strcmp(OPCode, "JMP") == 0){
+     return JMP_FUN;         
+  }
+  else if(strcmp(OPCode, "MFHI") == 0){
+     return MFHI_FUN;        
+  }
+  else if(strcmp(OPCode, "MFLO") == 0){
+     return MFLO_FUN;        
+  }
+  else if(strcmp(OPCode, "MULT") == 0){
+     return MULT_FUN;         
+  }
+  else if(strcmp(OPCode, "MULTU") == 0){
+     return MULTU_FUN;               
+  }
+  else if(strcmp(OPCode, "DIV") == 0){
+     return DIV_FUN;               
+  }
+  else if(strcmp(OPCode, "DIVU") == 0){
+     return DIVU_FUN;               
+  }
+  else if(strcmp(OPCode, "ADD") == 0){
+     return ADD_FUN;               
+  }
+  else if(strcmp(OPCode, "ADDU") == 0){
+     return ADDU_FUN;               
+  }
+  else if(strcmp(OPCode, "SUB") == 0){
+     return SUB_FUN;               
+  }
+  else if(strcmp(OPCode, "SUBU") == 0){
+     return SUBU_FUN;               
+  }
+  else if(strcmp(OPCode, "AND") == 0){
+     return AND_FUN;               
+  }
+  else if(strcmp(OPCode, "OR") == 0){
+     return OR_FUN;               
+  }
+  else if(strcmp(OPCode, "NOR") == 0){
+     return NOR_FUN;               
+  }
+  else if(strcmp(OPCode, "SLT") == 0){
+     return SLT_FUN;               
+  }
+  else if(strcmp(OPCode, "SLTU") == 0){
+     return SLTU_FUN;               
+  }
+   
+  return "FUN - ERRO!";  
+}
+
+//Função para retornar o código binário de cada OP Code
+char* getOPCode(char* FUN){
+  if(strcmp(FUN, "MFC0") == 0){
+     return MFC0_OP;               
+  }
+  else if(strcmp(FUN, "BEQ") == 0){
+     return BEQ_OP;
+  }
+  else if(strcmp(FUN, "BNE") == 0){
+     return BNE_OP;
+  }
+  else if(strcmp(FUN, "ADDI") == 0){
+     return ADDI_OP;
+  }
+  else if(strcmp(FUN, "ADDIU") == 0){
+     return ADDIU_OP;
+  }
+  else if(strcmp(FUN, "SLTI") == 0){
+     return SLTI_OP;
+  }
+  else if(strcmp(FUN, "SLTIU") == 0){
+     return SLTIU_OP;
+  }
+  else if(strcmp(FUN, "ANDI") == 0){
+     return ANDI_OP;
+  }
+  else if(strcmp(FUN, "ORI") == 0){
+     return ORI_OP;
+  }
+  else if(strcmp(FUN, "LUI") == 0){
+     return LUI_OP;
+  }
+  else if(strcmp(FUN, "LW") == 0){
+     return LW_OP;
+  }
+  else if(strcmp(FUN, "LBU") == 0){
+     return LBU_OP;
+  }
+  else if(strcmp(FUN, "LHU") == 0){
+     return LHU_OP;
+  }
+  else if(strcmp(FUN, "SB") == 0){
+     return SB_OP;
+  }
+  else if(strcmp(FUN, "SH") == 0){
+     return SH_OP;
+  }
+  else if(strcmp(FUN, "SW") == 0){
+     return SW_OP;
+  }
+  else if(strcmp(FUN, "J") == 0){
+     return J_OP;
+  }
+  else if(strcmp(FUN, "JAL") == 0){
+     return JAL_OP;
+  }
+  else
+     return R_OP;
+}
