@@ -2,39 +2,46 @@
 #include "constsReg.h"
 #include "useful.h"
 
-void ADD(char* instruction){  
+void ADD(char* instruction){
   int minLen = 0;
-  int maxLen = 0;  
+  int maxLen = 0;
   char binary[33] = "";
   char result[10] = "";
-  
+
   strcat(binary, getOPCode("ADD"));
-  
+
   //Register rs
-  minLen = pos(instruction, '$', 2);
-  maxLen = pos(instruction, ',', 2) - minLen;
-  substring(result, instruction, minLen, maxLen);
-  strcpy(result, trim(result));
+  getRegisterByType(result, instruction, "rs");
   strcat(binary, getRegister(result));
-  
+
   //Register rt
-  minLen = pos(instruction, '$', 3);
-  maxLen = pos(instruction, ',', 3) - minLen;
-  substring(result, instruction, minLen, maxLen);
-  strcpy(result, trim(result));
+  getRegisterByType(result, instruction, "rt");
   strcat(binary, getRegister(result));
-  
+
   //Register rd
-  minLen = pos(instruction, '$', 1);
-  maxLen = pos(instruction, ',', 1) - minLen;
-  substring(result, instruction, minLen, maxLen);
-  strcpy(result, trim(result));
+  getRegisterByType(result, instruction, "rd");
   strcat(binary, getRegister(result));
-  
+
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("ADD"));
-  
+
   printf("Binario: %s\n", binary);
+}
+
+void getRegisterByType(char* result, char* instruction, char* reg){
+  int posReg = 0;
+  if(strcmpi(reg, "rd")==0)
+    posReg = 1;
+  else if(strcmpi(reg, "rs")==0)
+    posReg = 2;
+  else if(strcmpi(reg, "rt")==0)
+    posReg = 3;
+
+  //Find register
+  int minLen = pos(instruction, '$', posReg);
+  int maxLen = pos(instruction, ',', posReg) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
 }
 
 void analiseInstruction(char* instruction)
@@ -45,16 +52,16 @@ void analiseInstruction(char* instruction)
    char binary[32] = "";
    char fun[6] = "";
 
-   char result[10] = "";  
+   char result[10] = "";
    minLen = 0;
    maxLen = pos(instruction, ' ', 1);
    substring(result, instruction, minLen, maxLen); //Get function from instruction
    strcpy(result, trim(result));
-   
+
    if(strcmpi(result, "ADD") == 0)
      ADD(instruction);
    else if(strcmpi(result, "ADDU") == 0)
-     printf("\n*ADDU*\n"); // ADDU(instruction);   
+     printf("\n*ADDU*\n"); // ADDU(instruction);
    if(strcmpi(result, "SUB") == 0)
      printf("\n*SUB*\n"); // SUB(instruction);
    else if(strcmpi(result, "SUBU") == 0)
@@ -74,7 +81,7 @@ void analiseInstruction(char* instruction)
    if(strcmpi(result, "LW") == 0)
      printf("\n*LW*\n"); // LW(instruction);
    else if(strcmpi(result, "LH") == 0)
-     printf("\n*LH*\n"); // LH(instruction);   
+     printf("\n*LH*\n"); // LH(instruction);
    if(strcmpi(result, "LHU") == 0)
      printf("\n*LHU*\n"); // LHU(instruction);
    else if(strcmpi(result, "LB") == 0)
@@ -94,7 +101,7 @@ void analiseInstruction(char* instruction)
    if(strcmpi(result, "MFLO") == 0)
      printf("\n*MFLO*\n"); // MFLO(instruction);
    else if(strcmpi(result, "AND") == 0)
-     printf("\n*AND*\n"); // AND(instruction);   
+     printf("\n*AND*\n"); // AND(instruction);
    if(strcmpi(result, "ANDI") == 0)
      printf("\n*ANDI*\n"); // ANDI(instruction);
    else if(strcmpi(result, "OR") == 0)
@@ -114,7 +121,7 @@ void analiseInstruction(char* instruction)
    if(strcmpi(result, "SRL") == 0)
      printf("\n*SRL*\n"); // SRL(instruction);
    else if(strcmpi(result, "SRA") == 0)
-     printf("\n*SRA*\n"); // SRA(instruction);   
+     printf("\n*SRA*\n"); // SRA(instruction);
    if(strcmpi(result, "SLLV") == 0)
      printf("\n*SLLV*\n"); // SLLV(instruction);
    else if(strcmpi(result, "SRLV") == 0)
