@@ -153,5 +153,5 @@ char* getRegister(char* reg){
      return $ra;
   }
   
-  return "REG - ERRO!";
+  return reg;
 }

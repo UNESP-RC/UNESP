@@ -1,9 +1,8 @@
 #include "constsOP_Fun.h"
 #include "constsReg.h"
+#include "useful.h"
 
-void ADD(char* instruction){
-  printf("\n*ADD*\n");
-  
+void ADD(char* instruction){  
   int minLen = 0;
   int maxLen = 0;  
   char binary[33] = "";
@@ -51,7 +50,6 @@ void analiseInstruction(char* instruction)
    maxLen = pos(instruction, ' ', 1);
    substring(result, instruction, minLen, maxLen); //Get function from instruction
    strcpy(result, trim(result));
-   printf("Function: [%s]\n", result);
    
    if(strcmpi(result, "ADD") == 0)
      ADD(instruction);
