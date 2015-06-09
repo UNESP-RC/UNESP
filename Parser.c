@@ -21,6 +21,10 @@ int main(){
 
       if (ch == '\n'){
         analiseInstruction(instruction);
+
+        if(pos(instruction, ':', 1) > 0)
+            printf("LABEL!!\n");
+
         strcpy(instruction, "");
       }
    }

@@ -28,6 +28,84 @@ void ADD(char* instruction){
   printf("Binario: %s\n", binary);
 }
 
+void SUB(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("SUB"));
+
+  //Register rs
+  getRegisterByType(result, instruction, "rs");
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, "rt");
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, "rd");
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("SUB"));
+
+  printf("Binario: %s\n", binary);
+}
+
+void ADDU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("ADDU"));
+
+  //Register rs
+  getRegisterByType(result, instruction, "rs");
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, "rt");
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, "rd");
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("ADDU"));
+
+  printf("Binario: %s\n", binary);
+}
+
+void SUBU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("SUBU"));
+
+  //Register rs
+  getRegisterByType(result, instruction, "rs");
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, "rt");
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, "rd");
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("SUBU"));
+
+  printf("Binario: %s\n", binary);
+}
+
 void getRegisterByType(char* result, char* instruction, char* reg){
   int posReg = 0;
   if(strcmpi(reg, "rd")==0)
@@ -44,8 +122,7 @@ void getRegisterByType(char* result, char* instruction, char* reg){
   strcpy(result, trim(result));
 }
 
-void analiseInstruction(char* instruction)
-{
+void analiseInstruction(char* instruction){
    int minLen = 0;
    int maxLen = 0;
 
@@ -61,11 +138,11 @@ void analiseInstruction(char* instruction)
    if(strcmpi(result, "ADD") == 0)
      ADD(instruction);
    else if(strcmpi(result, "ADDU") == 0)
-     printf("\n*ADDU*\n"); // ADDU(instruction);
+     ADDU(instruction);
    if(strcmpi(result, "SUB") == 0)
-     printf("\n*SUB*\n"); // SUB(instruction);
+     SUB(instruction);
    else if(strcmpi(result, "SUBU") == 0)
-     printf("\n*SUBU*\n"); // SUBU(instruction);
+     SUBU(instruction);
    if(strcmpi(result, "ADDI") == 0)
      printf("\n*ADDI*\n"); // ADDI(instruction);
    else if(strcmpi(result, "ADDIU") == 0)

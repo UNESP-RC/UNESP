@@ -1,3 +1,4 @@
-add $s0 , $szero, $s1
-add $s1, $t5, $t7
-add $s2, $s4, $sZERO
+sub $s0 , $szero, $s1
+add $s0, $szero, $s2
+LABEL:
+add $s1, $s2, $szero
