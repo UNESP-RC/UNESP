@@ -2,3 +2,13 @@ sub $s0 , $szero, $s1
 add $s0, $szero, $s2
 LABEL:
 add $s1, $s2, $szero
+LABEL2:
+add $s1, $s2, $szero
+add $s1, $s2, $szero
+LABEL2:
+add $s1, $s2, $szero
+add $s1, $s2, $szero
+LABEL2:
+add $s1, $s2, $szero
+add $s1, $s2, $szero
+LABEL3:

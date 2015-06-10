@@ -25,7 +25,7 @@ void ADD(char* instruction){
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("ADD"));
 
-  printf("Binario: %s\n", binary);
+  printf("%s\n", binary);
 }
 
 void SUB(char* instruction){
@@ -51,7 +51,7 @@ void SUB(char* instruction){
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("SUB"));
 
-  printf("Binario: %s\n", binary);
+  printf("%s\n", binary);
 }
 
 void ADDU(char* instruction){
@@ -77,7 +77,7 @@ void ADDU(char* instruction){
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("ADDU"));
 
-  printf("Binario: %s\n", binary);
+  printf("%s\n", binary);
 }
 
 void SUBU(char* instruction){
@@ -103,7 +103,7 @@ void SUBU(char* instruction){
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("SUBU"));
 
-  printf("Binario: %s\n", binary);
+  printf("%s\n", binary);
 }
 
 void getRegisterByType(char* result, char* instruction, char* reg){
@@ -125,9 +125,6 @@ void getRegisterByType(char* result, char* instruction, char* reg){
 void analiseInstruction(char* instruction){
    int minLen = 0;
    int maxLen = 0;
-
-   char binary[32] = "";
-   char fun[6] = "";
 
    char result[10] = "";
    minLen = 0;
