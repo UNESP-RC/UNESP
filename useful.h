@@ -46,8 +46,3 @@ char* trim (char *s)
 
     return s;
 }
-
-int countlabel(int i){
-    i = i + 1;
-    return i;
-}
