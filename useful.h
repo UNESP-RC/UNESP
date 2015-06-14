@@ -1,4 +1,5 @@
 #include<stdlib.h>
+#include<ctype.h>
 
 //Função para retornar posição de caracter na string
 int pos(char* string, char search, int occurrence){

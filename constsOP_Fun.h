@@ -1,3 +1,5 @@
+#include <string.h>
+
 //Campo OP Code para Funções tipo R
 char R_OP[] = "000000";
 char MFC0_OP[] = "010110"; //Excessão para os tipo R

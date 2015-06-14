@@ -1,9 +1,8 @@
 #include "AssBin.h"
 #include <stdio.h>
-#include "binary.h"
 
-void analise(char* instruction);
-int getControlLabel(char*);
+void analise(char*);
+int getControlLabel(char*, int);
 
 int main(){
    char ch;

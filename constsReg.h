@@ -1,3 +1,5 @@
+#include <string.h>
+
 //Registrador ZERO (Valor constante zero)
 char $SZERO[] = "00000";
 

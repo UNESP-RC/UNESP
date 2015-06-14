@@ -17,7 +17,7 @@ void stringComplete(int tam, char* string, char* result)
         strcat(aux, "0");
         cont--;                  
     }
-
+    
     strcat(aux, string); 
     strcpy(result, aux);
 }

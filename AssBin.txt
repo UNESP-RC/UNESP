@@ -12,6 +12,7 @@ add $s1, $s2, $szero   # teste louco da hashtag maluca
 
 add $s1, $s2, $szero
 
+j LABEL2
 LABEL2:
 
 add $s1, $s2, $szero
