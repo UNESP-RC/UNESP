@@ -2,6 +2,13 @@
 #include "constsReg.h"
 #include "useful.h"
 
+int controlLabel = -1;
+typedef struct label{
+	char binary[7];
+    char title[10];
+} label;
+label gLabel[32];
+
 void ADD(char* instruction){
   int minLen = 0;
   int maxLen = 0;
@@ -104,6 +111,24 @@ void SUBU(char* instruction){
   strcat(binary, getFunction("SUBU"));
 
   printf("%s\n", binary);
+}
+
+
+int getControlLabel(char* prLabel){
+	int i=0;
+	for(i=0; i <= controlLabel; i++)
+		if(strcmpi(gLabel[i].title, prLabel) == 0)
+		  return i;
+	
+	controlLabel++;
+	char stCtrlLabel[7] = "";
+	itoa(controlLabel, stCtrlLabel, 10);
+	decimalToBinary(stCtrlLabel, stCtrlLabel, 6);
+	 
+	strcpy(gLabel[controlLabel].binary, stCtrlLabel);
+	strcpy(gLabel[controlLabel].title, prLabel);
+	
+    return controlLabel;
 }
 
 void getRegisterByType(char* result, char* instruction, char* reg){
@@ -212,4 +237,9 @@ void analiseInstruction(char* instruction){
      printf("\n*JR*\n"); // JR(instruction);
    else if(strcmpi(result, "JAL") == 0)
      printf("\n*JAL*\n"); // JAL(instruction);
+   else if(pos(instruction, ':', 1) > 0){
+	  char label[10] = "";
+	  substring(label, instruction, 0, pos(instruction, ':', 1));
+      printf("%s\n", gLabel[getControlLabel(label)].binary); //Controle de label
+    }
 }
