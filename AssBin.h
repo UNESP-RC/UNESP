@@ -2,6 +2,7 @@
 #include "constsReg.h"
 #include "useful.h"
 #include "binary.h"
+#include "file.h"
 #include <stdio.h>
 
 int controlLabel = -1;
@@ -67,6 +68,7 @@ void ADD(char* instruction){
   strcat(binary, getFunction("ADD"));
 
   printf("%s\n", binary);
+  writeToFile(binary);
 }
 
 void SUB(char* instruction){
@@ -93,6 +95,7 @@ void SUB(char* instruction){
   strcat(binary, getFunction("SUB"));
 
   printf("%s\n", binary);
+  writeToFile(binary);
 }
 
 void ADDU(char* instruction){
@@ -119,6 +122,7 @@ void ADDU(char* instruction){
   strcat(binary, getFunction("ADDU"));
 
   printf("%s\n", binary);
+  writeToFile(binary);
 }
 
 void SUBU(char* instruction){
@@ -145,10 +149,10 @@ void SUBU(char* instruction){
   strcat(binary, getFunction("SUBU"));
 
   printf("%s\n", binary);
+  writeToFile(binary);
 }
 
 void J(char* instruction){
-  //printf("JUMP: ");
   int minLen = 0;
   int maxLen = 0;
   char binary[33] = "";
@@ -165,6 +169,7 @@ void J(char* instruction){
     
   strcat(binary, result);
   printf("%s\n", binary);
+  writeToFile(binary);
 }
 
 void analiseInstruction(char* instruction){
@@ -261,5 +266,6 @@ void analiseInstruction(char* instruction){
 	  char label[10] = "";
 	  substring(label, instruction, 0, pos(instruction, ':', 1));
       printf("%s\n", gLabel[getControlLabel(label, 1)].binary); //Controle de label
-    }
+      writeToFile(gLabel[getControlLabel(label, 1)].binary);
+   }
 }

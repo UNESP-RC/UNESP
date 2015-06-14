@@ -9,6 +9,7 @@ int main(){
    char instruction[100] = "";
    FILE *arq;
    arq = fopen("AssBin.txt", "r");
+   openFile("BinAss.txt");
 
    if(arq == NULL){
      printf("Erro, nao foi possivel abrir o arquivo\n");
@@ -17,7 +18,8 @@ int main(){
    }
 
    while( (ch=fgetc(arq))!= EOF )
-   {int len = strlen(instruction);
+   {
+      int len = strlen(instruction);
       instruction[len] = ch;
       instruction[len+1] = '\0';
 
