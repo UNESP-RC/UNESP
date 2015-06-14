@@ -23,7 +23,7 @@ void getRegisterByType(char* result, char* instruction, char* reg){
 
   //Find register
   int minLen = pos(instruction, '$', posReg);
-  int maxLen = pos(instruction, ',', posReg) - minLen;
+  int maxLen = (strcmpi(reg, "rt")==0 ? strlen(instruction) : pos(instruction, ',', posReg)) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
 }
