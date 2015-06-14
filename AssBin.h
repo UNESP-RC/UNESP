@@ -176,6 +176,8 @@ void analiseInstruction(char* instruction){
    int minLen = 0;
    int maxLen = 0;
 
+   strcpy(instruction, trim(instruction));
+
    char result[10] = "";
    minLen = 0;
    maxLen = pos(instruction, ' ', 1);
