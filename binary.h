@@ -58,3 +58,40 @@ void binaryToDecimal(char* number, char* result)
       
    itoa(decimal, result, 10);   
 }
+
+//Função binario ---> complemento de dois 
+void comple2(char * number, char* result)
+{    int cont,bin, carry ;
+     cont = strlen(number)  ;
+     carry = 0;
+     while(cont >= 0)
+     {
+      if(number[cont] == '1')
+      {
+       result[cont] = '0';
+      }
+      else if(number[cont] == '0')
+           {
+            result[cont] = '1';
+           }
+
+      cont --;
+     }
+
+     cont = strlen(number) - 1 ;
+     do
+     {
+     if(result[cont] == '0')
+      {
+       result[cont] = '1';
+       carry = 0;
+       }else if(result[cont] == '1')
+            {
+             result[cont] = '0';
+             carry = 1;
+             cont --;
+            }
+
+     }while(carry != 0);
+
+ }
