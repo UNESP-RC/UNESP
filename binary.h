@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h> 
-#include "useful.h"
 
 //Função que completa o numero binario com 0 a esquerda 
 void stringComplete(int tam, char* string, char* result)
@@ -26,16 +25,13 @@ void stringComplete(int tam, char* string, char* result)
 // Função conversora: decimal para binário 
 void decimalToBinary(char* number, char* result, int tam)
 {  
-    int decimal, total, potenc, negative = 0;
+    int decimal, total, potenc;
     decimal = atoi(number);
-    
-    if(decimal < 0)
-		negative = 1;
     
     itoa(decimal, result, 2); 
     
-    if (negative)
-    	substring(result, result, strlen(result) - tam, strlen(result));
+    if (strlen(result) > tam)
+    	substring(result, result, strlen(result) - tam, tam);
     else
     	stringComplete(tam, result, result);    
 }
@@ -54,11 +50,11 @@ void binaryToDecimal(char* number, char* result)
        if (aux!= 1) 
        {         
           if(number[i] == '1')
-            decimal += pow (2,aux-1); 
+            decimal += pow(2, aux - 1); 
        }else{   
             if(number[i]== '1') 
-               decimal = decimal+1;
-            }        
+               decimal = decimal + 1;
+        }        
                
         i++;
         aux--; 
@@ -66,41 +62,3 @@ void binaryToDecimal(char* number, char* result)
       
    itoa(decimal, result, 10);   
 }
-
-//Função binario ---> complemento de dois 
-void doTwoComplement(char* number, char* result)
-{    
-    int cont, bin, carry;
-    cont = strlen(number);
-    carry = 0;
-    while(cont >= 0)
-    {
-     	if(number[cont] == '1')
-        {
-        	result[cont] = '0';
-        }
-        else if(number[cont] == '0')
-        {
-        	result[cont] = '1';
-        }
-
-     	cont--;
-    }
-
-    cont = strlen(number) - 1;
-    do
-    {
-     	if(result[cont] == '0')
-        {
-        	result[cont] = '1';
-        	carry = 0;
-        }else if(result[cont] == '1')
-        {
-        	result[cont] = '0';
-            carry = 1;
-            cont--;
-        }
-
-    }while(carry != 0);
-
- }

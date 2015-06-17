@@ -12,18 +12,10 @@ typedef struct label{
 } label;
 label gLabel[32];
 
-void getRegisterByType(char* result, char* instruction, char* reg){
-  int posReg = 0;
-  if(strcmpi(reg, "rd")==0)
-    posReg = 1;
-  else if(strcmpi(reg, "rs")==0)
-    posReg = 2;
-  else if(strcmpi(reg, "rt")==0)
-    posReg = 3;
-
+void getRegisterByType(char* result, char* instruction, int posReg){
   //Find register
   int minLen = pos(instruction, '$', posReg);
-  int maxLen = (strcmpi(reg, "rt")==0 ? strlen(instruction) : pos(instruction, ',', posReg)) - minLen;
+  int maxLen = posReg == 3 ? strlen(instruction) : pos(instruction, ',', posReg) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
 }
@@ -53,20 +45,49 @@ void ADD(char* instruction){
   strcat(binary, getOPCode("ADD"));
 
   //Register rs
-  getRegisterByType(result, instruction, "rs");
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, "rt");
+  getRegisterByType(result, instruction, 3);
   strcat(binary, getRegister(result));
 
   //Register rd
-  getRegisterByType(result, instruction, "rd");
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("ADD"));
 
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void ADDI(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("ADDI"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+  
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);  
+  strcat(binary, result);
+  
   printf("%s\n", binary);
   writeToFile(binary);
 }
@@ -80,15 +101,15 @@ void SUB(char* instruction){
   strcat(binary, getOPCode("SUB"));
 
   //Register rs
-  getRegisterByType(result, instruction, "rs");
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, "rt");
+  getRegisterByType(result, instruction, 3);
   strcat(binary, getRegister(result));
 
   //Register rd
-  getRegisterByType(result, instruction, "rd");
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
@@ -107,15 +128,15 @@ void ADDU(char* instruction){
   strcat(binary, getOPCode("ADDU"));
 
   //Register rs
-  getRegisterByType(result, instruction, "rs");
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, "rt");
+  getRegisterByType(result, instruction, 3);
   strcat(binary, getRegister(result));
 
   //Register rd
-  getRegisterByType(result, instruction, "rd");
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
@@ -134,15 +155,15 @@ void SUBU(char* instruction){
   strcat(binary, getOPCode("SUBU"));
 
   //Register rs
-  getRegisterByType(result, instruction, "rs");
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, "rt");
+  getRegisterByType(result, instruction, 3);
   strcat(binary, getRegister(result));
 
   //Register rd
-  getRegisterByType(result, instruction, "rd");
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
@@ -193,7 +214,7 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "SUBU") == 0)
      SUBU(instruction);
    if(strcmpi(result, "ADDI") == 0)
-     printf("\n*ADDI*\n"); // ADDI(instruction);
+     ADDI(instruction);
    else if(strcmpi(result, "ADDIU") == 0)
      printf("\n*ADDIU*\n"); // ADDIU(instruction);
    if(strcmpi(result, "MULT") == 0)

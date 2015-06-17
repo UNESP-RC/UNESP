@@ -12,9 +12,9 @@ int main(){
    openFile("BinAss.txt");
 
    if(arq == NULL){
-     printf("Erro, nao foi possivel abrir o arquivo\n");
-	 system("pause");
-	 exit(0);
+      printf("Erro, nao foi possivel abrir o arquivo\n");
+	  system("pause");
+	  exit(0);
    }
 
    while( (ch=fgetc(arq))!= EOF )
