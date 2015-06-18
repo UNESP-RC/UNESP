@@ -202,6 +202,62 @@ void SUBU(char* instruction){
   writeToFile(binary);
 }
 
+void SLT(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("SLT"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("SLT"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void SLTI(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("SLTI"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, result);
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 void J(char* instruction){
   int minLen = 0;
   int maxLen = 0;
@@ -289,9 +345,9 @@ void analiseInstruction(char* instruction){
    if(strcmpi(result, "NOR") == 0)
      printf("\n*NOR*\n"); // NOR(instruction);
    else if(strcmpi(result, "SLT") == 0)
-     printf("\n*SLT*\n"); // SLT(instruction);
+   SLT(instruction);
    if(strcmpi(result, "SLTI") == 0)
-     printf("\n*SLTI*\n"); // SLTI(instruction);
+   SLTI(instruction);
    else if(strcmpi(result, "SLL") == 0)
      printf("\n*SLL*\n"); // SLL(instruction);
    if(strcmpi(result, "SRL") == 0)

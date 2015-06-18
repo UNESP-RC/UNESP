@@ -1,13 +1,13 @@
 sub $s0 , $szero, $s1
 addi $s0, $szero, -10
 LABEL:
-addiu $s1, $s2, -10
+addiu $s0, $szero, -10
 LABEL2:
 add $s1, $s2, $szero   # teste louco da hashtag maluca
-add $s1, $s2, $szero
+slt $s1, $s2, $s3
 j LABEL3
 LABEL2:
-add $s1, $s2, $szero
+slti $s1, $s2, 10
 add $s1, $s2, $szero
 LABEL2:
 add $s1, $s2, $szero
