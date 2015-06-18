@@ -25,14 +25,14 @@ int getControlLabel(char* prLabel, int isDefinition){
 	for(i=0; i <= controlLabel; i++)
 		if(strcmpi(gLabel[i].title, prLabel) == 0)
 		  return i;
-	
+
 	controlLabel++;
 	char stCtrlLabel[7] = "";
-	itoa(controlLabel, stCtrlLabel, 10);	
-	decimalToBinary(stCtrlLabel, stCtrlLabel, 6);	
+	itoa(controlLabel, stCtrlLabel, 10);
+	decimalToBinary(stCtrlLabel, stCtrlLabel, 6);
 	strcpy(gLabel[controlLabel].binary, stCtrlLabel);
 	strcpy(gLabel[controlLabel].title, prLabel);
-		
+
     return controlLabel;
 }
 
@@ -79,15 +79,44 @@ void ADDI(char* instruction){
   //Register rt
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
-  
+
   //Find number
   minLen = pos(instruction, ',', 2) + 1;
   maxLen = strlen(instruction) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
-  decimalToBinary(result, result, 16);  
+  decimalToBinary(result, result, 16);
   strcat(binary, result);
-  
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void ADDIU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("ADDIU"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, result);
+
   printf("%s\n", binary);
   writeToFile(binary);
 }
@@ -183,11 +212,11 @@ void J(char* instruction){
 
   minLen = pos(instruction, ' ', 1);
   maxLen = strlen(instruction) - minLen;
-  substring(result, instruction, minLen, maxLen);  
+  substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
-  
+
   stringComplete(26, gLabel[getControlLabel(result, 0)].binary, result);
-    
+
   strcat(binary, result);
   printf("%s\n", binary);
   writeToFile(binary);
@@ -216,7 +245,7 @@ void analiseInstruction(char* instruction){
    if(strcmpi(result, "ADDI") == 0)
      ADDI(instruction);
    else if(strcmpi(result, "ADDIU") == 0)
-     printf("\n*ADDIU*\n"); // ADDIU(instruction);
+     ADDIU(instruction);
    if(strcmpi(result, "MULT") == 0)
      printf("\n*MULT*\n"); // MULT(instruction);
    else if(strcmpi(result, "MULTU") == 0)
