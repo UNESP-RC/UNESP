@@ -1,7 +1,7 @@
 sub $s0 , $szero, $s1
 addi $s0, $szero, -10
 LABEL:
-add $s1, $s2, $szero
+addiu $s1, $s2, -10
 LABEL2:
 add $s1, $s2, $szero   # teste louco da hashtag maluca
 add $s1, $s2, $szero
