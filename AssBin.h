@@ -294,47 +294,47 @@ void analiseInstruction(char* instruction){
      ADD(instruction);
    else if(strcmpi(result, "ADDU") == 0)
      ADDU(instruction);
-   if(strcmpi(result, "SUB") == 0)
+   else if(strcmpi(result, "SUB") == 0)
      SUB(instruction);
    else if(strcmpi(result, "SUBU") == 0)
      SUBU(instruction);
-   if(strcmpi(result, "ADDI") == 0)
+   else if(strcmpi(result, "ADDI") == 0)
      ADDI(instruction);
    else if(strcmpi(result, "ADDIU") == 0)
      ADDIU(instruction);
-   if(strcmpi(result, "MULT") == 0)
+   else if(strcmpi(result, "MULT") == 0)
      printf("\n*MULT*\n"); // MULT(instruction);
    else if(strcmpi(result, "MULTU") == 0)
      printf("\n*MULTU*\n"); // MULTU(instruction);
-   if(strcmpi(result, "DIV") == 0)
+   else if(strcmpi(result, "DIV") == 0)
      printf("\n*DIV*\n"); // DIV(instruction);
    else if(strcmpi(result, "DIVU") == 0)
      printf("\n*DIVU*\n"); // DIVU(instruction);
-   if(strcmpi(result, "LW") == 0)
+   else if(strcmpi(result, "LW") == 0)
      printf("\n*LW*\n"); // LW(instruction);
    else if(strcmpi(result, "LH") == 0)
      printf("\n*LH*\n"); // LH(instruction);
-   if(strcmpi(result, "LHU") == 0)
+   else if(strcmpi(result, "LHU") == 0)
      printf("\n*LHU*\n"); // LHU(instruction);
    else if(strcmpi(result, "LB") == 0)
      printf("\n*LB*\n"); // LB(instruction);
-   if(strcmpi(result, "LBU") == 0)
+   else if(strcmpi(result, "LBU") == 0)
      printf("\n*LBU*\n"); // LBU(instruction);
    else if(strcmpi(result, "SW") == 0)
      printf("\n*SW*\n"); // SW(instruction);
-   if(strcmpi(result, "SH") == 0)
+   else if(strcmpi(result, "SH") == 0)
      printf("\n*SH*\n"); // SH(instruction);
    else if(strcmpi(result, "SB") == 0)
      printf("\n*SB*\n"); // SB(instruction);
-   if(strcmpi(result, "LUI") == 0)
+   else if(strcmpi(result, "LUI") == 0)
      printf("\n*LUI*\n"); // LUI(instruction);
    else if(strcmpi(result, "MFHI") == 0)
      printf("\n*MFHI*\n"); // MFHI(instruction);
-   if(strcmpi(result, "MFLO") == 0)
+   else if(strcmpi(result, "MFLO") == 0)
      printf("\n*MFLO*\n"); // MFLO(instruction);
    else if(strcmpi(result, "AND") == 0)
      printf("\n*AND*\n"); // AND(instruction);
-   if(strcmpi(result, "ANDI") == 0)
+   else if(strcmpi(result, "ANDI") == 0)
      printf("\n*ANDI*\n"); // ANDI(instruction);
    else if(strcmpi(result, "OR") == 0)
      printf("\n*OR*\n"); // OR(instruction);
@@ -345,28 +345,28 @@ void analiseInstruction(char* instruction){
    if(strcmpi(result, "NOR") == 0)
      printf("\n*NOR*\n"); // NOR(instruction);
    else if(strcmpi(result, "SLT") == 0)
-   SLT(instruction);
-   if(strcmpi(result, "SLTI") == 0)
-   SLTI(instruction);
+     SLT(instruction);
+   else if(strcmpi(result, "SLTI") == 0)
+     SLTI(instruction);
    else if(strcmpi(result, "SLL") == 0)
      printf("\n*SLL*\n"); // SLL(instruction);
-   if(strcmpi(result, "SRL") == 0)
+   else if(strcmpi(result, "SRL") == 0)
      printf("\n*SRL*\n"); // SRL(instruction);
    else if(strcmpi(result, "SRA") == 0)
      printf("\n*SRA*\n"); // SRA(instruction);
-   if(strcmpi(result, "SLLV") == 0)
+   else if(strcmpi(result, "SLLV") == 0)
      printf("\n*SLLV*\n"); // SLLV(instruction);
    else if(strcmpi(result, "SRLV") == 0)
      printf("\n*SRLV*\n"); // SRLV(instruction);
-   if(strcmpi(result, "SRAV") == 0)
+   else if(strcmpi(result, "SRAV") == 0)
      printf("\n*SRAV*\n"); // SRAV(instruction);
    else if(strcmpi(result, "BEQ") == 0)
      printf("\n*BEQ*\n"); // BEQ(instruction);
-   if(strcmpi(result, "BNE") == 0)
+   else if(strcmpi(result, "BNE") == 0)
      printf("\n*BNE*\n"); // BNE(instruction);
    else if(strcmpi(result, "J") == 0)
      J(instruction);
-   if(strcmpi(result, "JR") == 0)
+   else if(strcmpi(result, "JR") == 0)
      printf("\n*JR*\n"); // JR(instruction);
    else if(strcmpi(result, "JAL") == 0)
      printf("\n*JAL*\n"); // JAL(instruction);
