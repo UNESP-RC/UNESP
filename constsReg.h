@@ -21,6 +21,10 @@ char $a6[] = "01010";
 char $a7[] = "01011";
 
 //Registradores temporários
+char $t0[] = "01000";
+char $t1[] = "01001";
+char $t2[] = "01010";
+char $t3[] = "01011";
 char $t4[] = "01100";
 char $t5[] = "01101";
 char $t6[] = "01110";
