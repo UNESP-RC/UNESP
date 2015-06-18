@@ -98,13 +98,13 @@ char* getRegister(char* reg){
   else if(strcmpi(reg, "$a7") == 0){
      return $a7;
   }
-  else if(strcmpi(reg, "$t5") == 0){
+  else if(strcmpi(reg, "$t1") == 0){
      return $t1;
   }
-  else if(strcmpi(reg, "$t5") == 0){
+  else if(strcmpi(reg, "$t2") == 0){
      return $t2;
   }
-  else if(strcmpi(reg, "$t5") == 0){
+  else if(strcmpi(reg, "$t3") == 0){
      return $t3;
   }
   else if(strcmpi(reg, "$t4") == 0){
