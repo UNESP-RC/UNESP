@@ -25,7 +25,7 @@ int main(){
 
       if (ch == '\n'){
       	if(pos(instruction, '#', 1) > 0)
-   	  		substring(instruction, instruction, 0, pos(instruction, '#', 1));
+   	  		substring(instruction, instruction, 0, pos(instruction, '#', 1)); //Ignorar comentários
         
 		analiseInstruction(instruction);
 
