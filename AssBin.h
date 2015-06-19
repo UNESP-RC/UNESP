@@ -258,6 +258,66 @@ void SLTI(char* instruction){
   writeToFile(binary);
 }
 
+void BEQ(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[20] = "";
+  
+  strcat(binary, getOPCode("BEQ"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Get label
+  minLen = pos(instruction, ',', 2)+1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+
+  stringComplete(16, gLabel[getControlLabel(result, 0)].binary, result);
+
+  strcat(binary, result);
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void BNE(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[20] = "";
+  
+  strcat(binary, getOPCode("BNE"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Get label
+  minLen = pos(instruction, ',', 2)+1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+
+  stringComplete(16, gLabel[getControlLabel(result, 0)].binary, result);
+
+  strcat(binary, result);
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 void J(char* instruction){
   int minLen = 0;
   int maxLen = 0;
@@ -361,9 +421,9 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "SRAV") == 0)
      printf("\n*SRAV*\n"); // SRAV(instruction);
    else if(strcmpi(result, "BEQ") == 0)
-     printf("\n*BEQ*\n"); // BEQ(instruction);
+     BEQ(instruction);
    else if(strcmpi(result, "BNE") == 0)
-     printf("\n*BNE*\n"); // BNE(instruction);
+     BNE(instruction);
    else if(strcmpi(result, "J") == 0)
      J(instruction);
    else if(strcmpi(result, "JR") == 0)
