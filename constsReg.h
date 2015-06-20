@@ -174,4 +174,10 @@ char* getRegister(char* reg){
   return reg;
 }
 
+// Função para pegar o nome do registrador pelo binário
+void getNameRegister(char* result, char* bin){
+	if(strcmpi(bin, $SZERO) == 0)
+		strcpy(result, "$SZERO");
+}
+
 #endif
