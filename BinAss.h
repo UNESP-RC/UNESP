@@ -287,11 +287,59 @@ void ADDI_B(char* binary){
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	substring(result, binary, 16, 16);
-	binaryToDecimal(result, result);	
+	binaryToDecimal(result, result);
 	strcat(instruction, result);
-	
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void ADDIU_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "ADDIU ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void ANDI_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "ANDI ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
@@ -365,7 +413,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, ADDI_OP) == 0) )
     	ADDI_B(binary);
     else if ( (strcmpi(opCode, ADDIU_OP) == 0) )
-    	printf("ADDIU\n");
+    	ADDIU_B(binary);
     else if ( (strcmpi(opCode, LW_OP) == 0) )
     	printf("LW\n");
     //else if ( (strcmpi(opCode, LH_OP) == 0) )
@@ -385,7 +433,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, LUI_OP) == 0) )
     	printf("LUI\n");
     else if ( (strcmpi(opCode, ANDI_OP) == 0) 	)
-    	printf("ANDI\n");
+    	ANDI_B(binary);
     else if ( (strcmpi(opCode, ORI_OP) == 0) )
     	printf("ORI\n");
     else if ( (strcmpi(opCode, SLTI_OP) == 0) )
