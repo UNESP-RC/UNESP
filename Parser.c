@@ -1,4 +1,5 @@
 #include "AssBin.h"
+#include "BinAss.h"
 #include <stdio.h>
 
 void analise(char*);
@@ -7,9 +8,27 @@ int getControlLabel(char*, int);
 int main(){
    char ch;
    char instruction[100] = "";
+   char readFile[100] = "";
+   char writeFile[100] = "";
    FILE *arq;
-   arq = fopen("AssBin.txt", "r");
-   openFile("BinAss.txt");
+   
+   int op = -1;
+   printf("1- Converter Assembly para Binario\n");
+   printf("2- Converter Binario para Assembly\n");
+   scanf("%d", &op);
+   
+   if(op == 1){
+   		strcpy(readFile, "AssBin.txt");
+   		strcpy(writeFile, "BinAss.txt");
+   }
+   else if(op == 2){
+   	    strcpy(readFile, "BinAss.txt");
+   	    strcpy(writeFile, "AssBin.txt");
+   }
+   system("cls");   
+   
+   arq = fopen(readFile, "r");
+   openFile(writeFile);
 
    if(arq == NULL){
       printf("Erro, nao foi possivel abrir o arquivo\n");
@@ -27,12 +46,19 @@ int main(){
       	if(pos(instruction, '#', 1) > 0)
    	  		substring(instruction, instruction, 0, pos(instruction, '#', 1)); //Ignorar comentários
         
-		analiseInstruction(instruction);
+        if(op == 1)
+			analiseInstruction(instruction);
+		else if(op == 2)
+			analiseBinary(instruction);
 
         strcpy(instruction, "");
       }
    }
-   analiseInstruction(instruction);
+   
+   if(op == 1)
+		analiseInstruction(instruction);
+	else if(op == 2)
+		analiseBinary(instruction);
 
    system("pause");
 }
