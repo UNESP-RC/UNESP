@@ -512,6 +512,31 @@ void SW(char* instruction){
   writeToFile(binary);
 }
 
+void MULT(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("MULT"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("MULT"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+
+
 void analiseInstruction(char* instruction){
    int minLen = 0;
    int maxLen = 0;
@@ -537,7 +562,7 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "ADDIU") == 0)
      ADDIU(instruction);
    else if(strcmpi(result, "MULT") == 0)
-     printf("\n*MULT*\n"); // MULT(instruction);
+     MULT(instruction);
    else if(strcmpi(result, "MULTU") == 0)
      printf("\n*MULTU*\n"); // MULTU(instruction);
    else if(strcmpi(result, "DIV") == 0)
