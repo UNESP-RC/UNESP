@@ -575,7 +575,7 @@ void SLL(char* instruction){
   strcpy(result, trim(result));
   decimalToBinary(result, result, 5);
   strcat(binary, result);
-  
+
   strcat(binary, "00000"); //Shamt
 
   strcat(binary, getFunction("SLL"));
@@ -607,12 +607,12 @@ void SRL(char* instruction){
   strcpy(result, trim(result));
   decimalToBinary(result, result, 5);
   strcat(binary, result);
-  
+
   strcat(binary, "00000"); //Shamt
 
   strcat(binary, getFunction("SRL"));
 
-  printf("%s\n", binary); 	
+  printf("%s\n", binary);
   writeToFile(binary);
 }
 
@@ -869,7 +869,7 @@ void MULT(char* instruction){
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
   strcat(binary, getRegister(result));
-  
+
   strcat(binary, "00000"); //Register rd
 
   strcat(binary, "00000"); //Shamt
@@ -997,6 +997,35 @@ void XOR(char* instruction){
 
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("XOR"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void XORI(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("XORI"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, result);
 
   printf("%s\n", binary);
   writeToFile(binary);

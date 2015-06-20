@@ -484,6 +484,38 @@ void MULTU_B(char* binary){
 	writeToFile(instruction);
 }
 
+void MFHI_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MFHI ");
+
+	// Registrador rd
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+
+void MFLO_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MFLO ");
+
+	// Registrador rd
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+
 void analiseBinary(char* binary){
 	char opCode[7] = "";
 	char funct[10] = "";
