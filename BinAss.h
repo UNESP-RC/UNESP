@@ -37,7 +37,7 @@ void ADD_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "ADD ");
-    
+
 	//registrador RS
 	substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
@@ -49,11 +49,11 @@ void ADD_B(char* binary){
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
     //registrador RD
 	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
-	strcat(instruction, aux);	
+	strcat(instruction, aux);
 
 	printf("%s\n", instruction);
 	writeToFile(instruction);
@@ -70,12 +70,12 @@ void SUB_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -94,12 +94,12 @@ void ADDU_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -118,12 +118,12 @@ void AND_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -142,12 +142,12 @@ void NOR_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -166,12 +166,12 @@ void OR_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -214,12 +214,12 @@ void SLT_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary,11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -238,12 +238,12 @@ void SLTU_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -262,12 +262,12 @@ void SUBU_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -286,12 +286,12 @@ void XOR_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -429,7 +429,7 @@ void J_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "J ");
-	
+
 	substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
 	
@@ -556,6 +556,7 @@ void SW_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+<<<<<<< HEAD
 void BEQ_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
@@ -579,6 +580,21 @@ void BEQ_B(char* binary){
     substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
 	
+=======
+void JR_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "JR ");
+
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+>>>>>>> f9d0734067def136d37fa672d2ff508b219cc008
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
