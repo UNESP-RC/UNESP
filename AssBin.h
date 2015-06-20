@@ -1050,6 +1050,49 @@ void LB(char* instruction){
   writeToFile(binary);
 }
 
+void LUI (char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("LUI"));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, result);
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void JR (char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("JR"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("JR"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
 
 void analiseInstruction(char* instruction){
    int minLen = 0;
@@ -1100,7 +1143,7 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "SB") == 0)
      SB(instruction);
    else if(strcmpi(result, "LUI") == 0)
-     printf("\n*LUI*\n"); // LUI(instruction);
+     LUI(instruction);
    else if(strcmpi(result, "MFHI") == 0)
      MFHI(instruction);
    else if(strcmpi(result, "MFLO") == 0)
@@ -1140,7 +1183,7 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "J") == 0)
      J(instruction);
    else if(strcmpi(result, "JR") == 0)
-     printf("\n*JR*\n"); // JR(instruction);
+     JR(instruction);
    else if(strcmpi(result, "JAL") == 0)
      printf("\n*JAL*\n"); // JAL(instruction);
    else if(pos(instruction, ':', 1) > 0){
