@@ -278,14 +278,14 @@ void analiseBinary(char* binary){
 
 	strcpy(binary, trim(binary));
 
-	if(strlen(binary) < 32){
+	if(strlen(binary) == 6){
 		printf("%s\n", gLabelB[getControlLabelB(binary)].title);
 		writeToFile(gLabelB[getControlLabelB(binary)].title);
 		return;
 	}
 
 	substring(opCode, binary, 0, 6);
-	substring(funct, binary, 20, 6);
+	substring(funct, binary, 26, 6);
 
 	//Binários tipo R
     if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, ADD_FUN) == 0) )
