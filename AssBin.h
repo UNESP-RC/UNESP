@@ -857,12 +857,17 @@ void MULT(char* instruction){
   strcat(binary, getOPCode("MULT"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  minLen = pos(instruction, ',', 1)+1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
   strcat(binary, getRegister(result));
+  
+  strcat(binary, "00000"); //Register rd
 
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("MULT"));
