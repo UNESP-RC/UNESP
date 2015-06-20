@@ -619,6 +619,29 @@ void DIV(char* instruction){
   writeToFile(binary);
 }
 
+void DIVU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("DIVU"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("DIVU"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 
 
 void analiseInstruction(char* instruction){
@@ -652,7 +675,7 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "DIV") == 0)
      DIV(instruction);
    else if(strcmpi(result, "DIVU") == 0)
-     printf("\n*DIVU*\n"); // DIVU(instruction);
+     DIVU(instruction);
    else if(strcmpi(result, "LW") == 0)
      LW(instruction);
    else if(strcmpi(result, "LH") == 0)
