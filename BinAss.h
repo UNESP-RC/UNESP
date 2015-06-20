@@ -257,6 +257,7 @@ void analiseBinary(char* binary){
 
 	if(strlen(binary) < 32){
 		printf("%s\n", gLabelB[getControlLabelB(binary)].title);
+		writeToFile(gLabelB[getControlLabelB(binary)].title);
 		return;
 	}
 
