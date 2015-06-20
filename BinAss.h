@@ -6,6 +6,31 @@
 #include "useful.h"
 #include "file.h"
 
+int controlLabelB = -1;
+typedef struct labelB{
+	char binary[7];
+    char title[10];
+} labelB;
+labelB gLabelB[32];
+
+int getControlLabelB(char* prLabelB){
+	int i=0;
+	for(i=0; i <= controlLabelB; i++)
+		if(strcmpi(gLabelB[i].binary, prLabelB) == 0)
+		  return i;
+
+	controlLabelB++;
+	char stCtrlLabel[10] = "";
+	char title[10] = "LABEL";
+	itoa(controlLabelB, stCtrlLabel, 10);
+	strcat(title, stCtrlLabel);	
+	
+	strcpy(gLabelB[controlLabelB].binary, prLabelB);
+	strcpy(gLabelB[controlLabelB].title, title);
+
+    return controlLabelB;
+}
+
 void ADD_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -36,6 +61,11 @@ void analiseBinary(char* binary){
 	char funct[10] = "";
 	
 	strcpy(binary, trim(binary));
+	
+	if(strlen(binary) < 32){
+		printf("%s\n", gLabelB[getControlLabelB(binary)].title);
+		return;
+	}
 	
 	substring(opCode, binary, 0, 6);	
 	substring(funct, binary, 20, 6);
