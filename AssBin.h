@@ -318,6 +318,44 @@ void BNE(char* instruction){
   writeToFile(binary);
 }
 
+void MFHI(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("MFHI"));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("MFHI"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void MFLO(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("MFLO"));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("MFLO"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 void AND(char* instruction){
   int minLen = 0;
   int maxLen = 0;
@@ -512,6 +550,277 @@ void SW(char* instruction){
   writeToFile(binary);
 }
 
+void SB(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = "";
+
+  strcat(binary, getOPCode("SB"));
+
+  //Register rs
+  minLen = pos(instruction, '(', 1) + 1;
+  maxLen = pos(instruction, ')', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Constant
+  minLen = pos(instruction, ',', 1) + 1;
+  maxLen = pos(instruction, '(', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, getRegister(result));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void LBU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = "";
+
+  strcat(binary, getOPCode("LBU"));
+
+  //Register rs
+  minLen = pos(instruction, '(', 1) + 1;
+  maxLen = pos(instruction, ')', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Constant
+  minLen = pos(instruction, ',', 1) + 1;
+  maxLen = pos(instruction, '(', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, getRegister(result));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void LHU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = "";
+
+  strcat(binary, getOPCode("LHU"));
+
+  //Register rs
+  minLen = pos(instruction, '(', 1) + 1;
+  maxLen = pos(instruction, ')', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Constant
+  minLen = pos(instruction, ',', 1) + 1;
+  maxLen = pos(instruction, '(', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, getRegister(result));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void SH(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = "";
+
+  strcat(binary, getOPCode("SH"));
+
+  //Register rs
+  minLen = pos(instruction, '(', 1) + 1;
+  maxLen = pos(instruction, ')', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Constant
+  minLen = pos(instruction, ',', 1) + 1;
+  maxLen = pos(instruction, '(', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, getRegister(result));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void MULT(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("MULT"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("MULT"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void MULTU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("MULTU"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("MULTU"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void DIV(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("DIV"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("DIV"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void DIVU(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("DIVU"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("DIVU"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void NOR(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("NOR"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("NOR"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void XOR(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("XOR"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("XOR"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+
 void analiseInstruction(char* instruction){
    int minLen = 0;
    int maxLen = 0;
@@ -537,35 +846,35 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "ADDIU") == 0)
      ADDIU(instruction);
    else if(strcmpi(result, "MULT") == 0)
-     printf("\n*MULT*\n"); // MULT(instruction);
+     MULT(instruction);
    else if(strcmpi(result, "MULTU") == 0)
-     printf("\n*MULTU*\n"); // MULTU(instruction);
+     MULTU(instruction);
    else if(strcmpi(result, "DIV") == 0)
-     printf("\n*DIV*\n"); // DIV(instruction);
+     DIV(instruction);
    else if(strcmpi(result, "DIVU") == 0)
-     printf("\n*DIVU*\n"); // DIVU(instruction);
+     DIVU(instruction);
    else if(strcmpi(result, "LW") == 0)
      LW(instruction);
    else if(strcmpi(result, "LH") == 0)
      printf("\n*LH*\n"); // LH(instruction);
    else if(strcmpi(result, "LHU") == 0)
-     printf("\n*LHU*\n"); // LHU(instruction);
+     LHU(instruction);
    else if(strcmpi(result, "LB") == 0)
      printf("\n*LB*\n"); // LB(instruction);
    else if(strcmpi(result, "LBU") == 0)
-     printf("\n*LBU*\n"); // LBU(instruction);
+     LBU(instruction);
    else if(strcmpi(result, "SW") == 0)
      SW(instruction);
    else if(strcmpi(result, "SH") == 0)
-     printf("\n*SH*\n"); // SH(instruction);
+     SH(instruction);
    else if(strcmpi(result, "SB") == 0)
-     printf("\n*SB*\n"); // SB(instruction);
+     SB(instruction);
    else if(strcmpi(result, "LUI") == 0)
      printf("\n*LUI*\n"); // LUI(instruction);
    else if(strcmpi(result, "MFHI") == 0)
-     printf("\n*MFHI*\n"); // MFHI(instruction);
+     MFHI(instruction);
    else if(strcmpi(result, "MFLO") == 0)
-     printf("\n*MFLO*\n"); // MFLO(instruction);
+     MFLO(instruction);
    else if(strcmpi(result, "AND") == 0)
      AND(instruction);
    else if(strcmpi(result, "ANDI") == 0)
@@ -575,9 +884,9 @@ void analiseInstruction(char* instruction){
    if(strcmpi(result, "ORI") == 0)
      ORI(instruction);
    else if(strcmpi(result, "XOR") == 0)
-     printf("\n*XOR*\n"); // XOR(instruction);
+     XOR(instruction);
    if(strcmpi(result, "NOR") == 0)
-     printf("\n*NOR*\n"); // NOR(instruction);
+     NOR(instruction);
    else if(strcmpi(result, "SLT") == 0)
      SLT(instruction);
    else if(strcmpi(result, "SLTI") == 0)
