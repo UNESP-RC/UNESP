@@ -4,19 +4,45 @@
 #include "constsOP_Fun.h"
 #include "constsReg.h"
 #include "useful.h"
+#include "file.h"
 
-void analiseInstructionB(char* instruction){
+void ADD_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+	
+	strcat(instruction, "ADD ");
+	
+	substring(result, binary, 6, 5);	
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	substring(result, binary, 11, 5);	
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	substring(result, binary, 16, 5);	
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+
+void analiseBinary(char* binary){
 	char opCode[7] = "";
 	char funct[10] = "";
 	
-	strcpy(instruction, trim(instruction));
+	strcpy(binary, trim(binary));
 	
-	substring(opCode, instruction, 0, 6);	
-	substring(funct, instruction, 20, 6);
+	substring(opCode, binary, 0, 6);	
+	substring(funct, binary, 20, 6);
 		
 	//Binários tipo R
     if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, ADD_FUN) == 0) )
-    	printf("ADD\n"); //ADD_B(instruction);
+    	ADD_B(binary);
 	else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, ADDU_FUN) == 0) )
     	printf("ADDU\n"); //ADDU_B(instruction);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SUB_FUN) == 0) )
