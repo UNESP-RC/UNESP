@@ -1097,6 +1097,27 @@ void JR (char* instruction){
   writeToFile(binary);
 }
 
+void JAL(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("JAL"));
+
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, result);
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 void analiseInstruction(char* instruction){
    int minLen = 0;
    int maxLen = 0;
@@ -1188,7 +1209,7 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "JR") == 0)
      JR(instruction);
    else if(strcmpi(result, "JAL") == 0)
-     printf("\n*JAL*\n"); // JAL(instruction);
+     JAL(instruction);
    else if(pos(instruction, ':', 1) > 0){
 	  char label[10] = "";
 	  substring(label, instruction, 0, pos(instruction, ':', 1));
