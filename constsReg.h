@@ -1,3 +1,6 @@
+#ifndef _constsReg_
+#define _constsReg_
+
 #include <string.h>
 
 //Registrador ZERO (Valor constante zero)
@@ -170,3 +173,5 @@ char* getRegister(char* reg){
 
   return reg;
 }
+
+#endif
