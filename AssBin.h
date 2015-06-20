@@ -318,6 +318,44 @@ void BNE(char* instruction){
   writeToFile(binary);
 }
 
+void MFHI(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("MFHI"));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("MFHI"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void MFLO(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("MFLO"));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("MFLO"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 void AND(char* instruction){
   int minLen = 0;
   int maxLen = 0;
