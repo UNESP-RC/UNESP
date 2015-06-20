@@ -318,6 +318,118 @@ void BNE(char* instruction){
   writeToFile(binary);
 }
 
+void AND(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("AND"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("AND"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void ANDI(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("ANDI"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, result);
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void OR(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("OR"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("OR"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void ORI(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
+                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
+
+  strcat(binary, getOPCode("ORI"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Find number
+  minLen = pos(instruction, ',', 2) + 1;
+  maxLen = strlen(instruction) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, result);
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 void J(char* instruction){
   int minLen = 0;
   int maxLen = 0;
@@ -455,13 +567,13 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "MFLO") == 0)
      printf("\n*MFLO*\n"); // MFLO(instruction);
    else if(strcmpi(result, "AND") == 0)
-     printf("\n*AND*\n"); // AND(instruction);
+     AND(instruction);
    else if(strcmpi(result, "ANDI") == 0)
-     printf("\n*ANDI*\n"); // ANDI(instruction);
+     ANDI(instruction);
    else if(strcmpi(result, "OR") == 0)
-     printf("\n*OR*\n"); // OR(instruction);
+     OR(instruction);
    if(strcmpi(result, "ORI") == 0)
-     printf("\n*ORI*\n"); // ORI(instruction);
+     ORI(instruction);
    else if(strcmpi(result, "XOR") == 0)
      printf("\n*XOR*\n"); // XOR(instruction);
    if(strcmpi(result, "NOR") == 0)
