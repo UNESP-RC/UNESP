@@ -556,7 +556,6 @@ void SW_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-<<<<<<< HEAD
 void BEQ_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
@@ -580,7 +579,9 @@ void BEQ_B(char* binary){
     substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
 	
-=======
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 void JR_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -594,7 +595,6 @@ void JR_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
->>>>>>> f9d0734067def136d37fa672d2ff508b219cc008
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
