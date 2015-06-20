@@ -1216,6 +1216,8 @@ void analiseInstruction(char* instruction){
       printf("%s\n", gLabel[getControlLabel(label, 1)].binary); //Controle de label
       writeToFile(gLabel[getControlLabel(label, 1)].binary);
    }
+   else
+   	  writeToFile("00000000000000000000000000000000\n");
 }
 
 #endif
