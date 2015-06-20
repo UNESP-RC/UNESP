@@ -28,7 +28,11 @@ char NOR_FUN[] = "100111";
 char SLT_FUN[] = "101010";
 char SLTU_FUN[] = "101011";
 char XOR_FUN[]= "010110";
-
+char SRLV_FUN[] = "000110";
+char SRAV_FUN[] = "000111";
+char SLLV_FUN[] = "000100";
+char SLR_FUN [] = "000010";
+char SRA_FUN [] = "000011";
 //Campo OP Code para Funções tipo I
 char BEQ_OP[] = "000100";
 char BNE_OP[] = "000101";
