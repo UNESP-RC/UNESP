@@ -1089,9 +1089,15 @@ void JR (char* instruction){
 
   strcat(binary, getOPCode("JR"));
 
+  //Register rt
+  strcat(binary, "00000");
+
   //Register rs
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
+
+  //Register rd
+  strcat(binary, "00000");
 
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("JMP"));
