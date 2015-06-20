@@ -37,28 +37,21 @@ void ADD_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "ADD ");
-    //registrador RS
+    
+	//registrador RS
 	substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-<<<<<<< HEAD
 
-    substring(result, binary, 6, 5);
-	getNameRegister(aux, result);
-	strcat(instruction, aux);
-	strcat(instruction, ", ");
-
-	substring(result, binary, 11, 5);
-=======
     //registrador RT
-	substring(result, binary, 11, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
+	
     //registrador RD
-	substring(result, binary, 6, 5);
->>>>>>> 4e89d6e53d94377663bd8aa0cb04e2fd397287b4
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);	
 
@@ -432,7 +425,7 @@ void SLTI_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-<<<<<<< HEAD
+
 void J_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
@@ -442,8 +435,8 @@ void J_B(char* binary){
 	
 	substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
-	
-=======
+}
+
 void DIV_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -534,7 +527,6 @@ void MFLO_B(char* binary){
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
->>>>>>> 4e89d6e53d94377663bd8aa0cb04e2fd397287b4
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
