@@ -263,7 +263,7 @@ void BEQ(char* instruction){
   int maxLen = 0;
   char binary[33] = "";
   char result[20] = "";
-  
+
   strcat(binary, getOPCode("BEQ"));
 
   //Register rs
@@ -293,7 +293,7 @@ void BNE(char* instruction){
   int maxLen = 0;
   char binary[33] = "";
   char result[20] = "";
-  
+
   strcat(binary, getOPCode("BNE"));
 
   //Register rs
@@ -343,20 +343,20 @@ void LW(char* instruction){
   int maxLen = 0;
   char binary[33] = "";
   char result[255] = "";
-  
+
   strcat(binary, getOPCode("LW"));
-  
+
   //Register rs
   minLen = pos(instruction, '(', 1) + 1;
   maxLen = pos(instruction, ')', 1) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
   strcat(binary, getRegister(result));
-  
+
   //Register rt
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
-  
+
   //Constant
   minLen = pos(instruction, ',', 1) + 1;
   maxLen = pos(instruction, '(', 1) - minLen;
@@ -364,8 +364,39 @@ void LW(char* instruction){
   strcpy(result, trim(result));
   decimalToBinary(result, result, 16);
   strcat(binary, getRegister(result));
-  
-  printf("%s\n", binary);  
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void SW(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = "";
+
+  strcat(binary, getOPCode("SW"));
+
+  //Register rs
+  minLen = pos(instruction, '(', 1) + 1;
+  maxLen = pos(instruction, ')', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Constant
+  minLen = pos(instruction, ',', 1) + 1;
+  maxLen = pos(instruction, '(', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, getRegister(result));
+
+  printf("%s\n", binary);
   writeToFile(binary);
 }
 
@@ -412,7 +443,7 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "LBU") == 0)
      printf("\n*LBU*\n"); // LBU(instruction);
    else if(strcmpi(result, "SW") == 0)
-     printf("\n*SW*\n"); // SW(instruction);
+     SW(instruction);
    else if(strcmpi(result, "SH") == 0)
      printf("\n*SH*\n"); // SH(instruction);
    else if(strcmpi(result, "SB") == 0)
