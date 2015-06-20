@@ -101,6 +101,9 @@ char* getRegister(char* reg){
   else if(strcmpi(reg, "$a7") == 0){
      return $a7;
   }
+    else if(strcmpi(reg, "$t0") == 0){
+     return $t0;
+  }
   else if(strcmpi(reg, "$t1") == 0){
      return $t1;
   }
