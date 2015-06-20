@@ -3,6 +3,7 @@
 #include "constsOP_Fun.h"
 #include "constsReg.h"
 #include "useful.h"
+#include "binary.h"
 #include "file.h"
 
 int controlLabelB = -1;
@@ -270,7 +271,30 @@ void XOR_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void ADDI_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
 
+	strcat(instruction, "ADDI ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);	
+	strcat(instruction, result);
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 
 void analiseBinary(char* binary){
 	char opCode[7] = "";
@@ -316,7 +340,7 @@ void analiseBinary(char* binary){
     	AND_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, OR_FUN) == 0) )
     	OR_B(binary);
-    else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, XOR_FUN) == 0) ) // xor
+    else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, XOR_FUN) == 0) )
         XOR_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, NOR_FUN) == 0) )
         NOR_B(binary);
@@ -339,7 +363,7 @@ void analiseBinary(char* binary){
 
     //Binários tipo I
     else if ( (strcmpi(opCode, ADDI_OP) == 0) )
-    	printf("ADDI\n");
+    	ADDI_B(binary);
     else if ( (strcmpi(opCode, ADDIU_OP) == 0) )
     	printf("ADDIU\n");
     else if ( (strcmpi(opCode, LW_OP) == 0) )

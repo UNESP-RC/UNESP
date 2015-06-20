@@ -1,3 +1,6 @@
+#ifndef _binary_
+#define _binary_
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -99,3 +102,5 @@ void binaryToDecimal(char* number, char* result)
       
    itoa(decimal, result, 10);   
 }
+
+#endif
