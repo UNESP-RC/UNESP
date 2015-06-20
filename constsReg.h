@@ -179,8 +179,114 @@ char* getRegister(char* reg){
 
 // Função para pegar o nome do registrador pelo binário
 void getNameRegister(char* result, char* bin){
-	if(strcmpi(bin, $SZERO) == 0)
-		strcpy(result, "$SZERO");
+ if(strcmpi(bin, $SZERO) == 0)
+    strcpy(result, "$SZERO");
+ else if(strcmpi(bin, $at) == 0){
+     strcpy(result, "$at");
+  }
+  else if(strcmpi(bin, $v0) == 0){
+     strcpy(result, "$v0");
+  }
+  else if(strcmpi(bin, $v1) == 0){
+     strcpy(result, "$v1");
+  }
+  else if(strcmpi(bin, $a0) == 0){
+     strcpy(result, "$a0");
+  }
+  else if(strcmpi(bin, $a1) == 0){
+     strcpy(result, "$a1");
+  }
+  else if(strcmpi(bin, $a2) == 0){
+     strcpy(result, "$a2");
+  }
+  else if(strcmpi(bin, $a3) == 0){
+     strcpy(result, "$a3");
+  }
+  else if(strcmpi(bin, $a4) == 0){
+     strcpy(result, "$a4");
+  }
+  else if(strcmpi(bin, $a5) == 0){
+     strcpy(result, "$a5");
+  }
+  else if(strcmpi(bin, $a6) == 0){
+     strcpy(result, "$a6");
+  }
+  else if(strcmpi(bin, $a7) == 0){
+     strcpy(result, "$a7");
+  }
+  else if(strcmpi(bin, $t0) == 0){
+     strcpy(result, "$t0");
+  }
+  else if(strcmpi(bin, $t1) == 0){
+     strcpy(result, "$t1");
+  }
+  else if(strcmpi(bin, $t2) == 0){
+     strcpy(result, "$t3");
+  }
+  else if(strcmpi(bin, $t3) == 0){
+     strcpy(result, "$t3");
+  }
+  else if(strcmpi(bin, $t4) == 0){
+     strcpy(result, "$t4");
+  }
+  else if(strcmpi(bin, $t5) == 0){
+     strcpy(result, "$t5");
+  }
+  else if(strcmpi(bin, $t6) == 0){
+     strcpy(result, "$t6");
+  }
+  else if(strcmpi(bin, $t7) == 0){
+     strcpy(result, "$t7");
+  }
+  else if(strcmpi(bin, $s0) == 0){
+     strcpy(result, "$s0");
+  }
+  else if(strcmpi(bin, $s1) == 0){
+    strcpy(result, "$s1");
+  }
+  else if(strcmpi(bin, $s2) == 0){
+     strcpy(result, "$s2");
+  }
+  else if(strcmpi(bin, $s3) == 0){
+     strcpy(result, "$s3");
+  }
+  else if(strcmpi(bin, $s4) == 0){
+     strcpy(result, "$s4");
+  }
+  else if(strcmpi(bin, $s5) == 0){
+     strcpy(result, "$s5");
+  }
+  else if(strcmpi(bin, $s6) == 0){
+     strcpy(result, "$s6");
+  }
+  else if(strcmpi(bin, $s7) == 0){
+     strcpy(result, "$s7");
+  }
+  else if(strcmpi(bin, $t8) == 0){
+     strcpy(result, "$t8");
+  }
+  else if(strcmpi(bin, $t9) == 0){
+    strcpy(result, "$t9");
+  }
+  else if(strcmpi(bin, $k0) == 0){
+     strcpy(result, $k0);
+  }
+  else if(strcmpi(bin, $k1) == 0){
+     strcpy(result, "$k1");
+  }
+  else if(strcmpi(bin, $gp) == 0){
+     strcpy(result, "$gp");
+  }
+  else if(strcmpi(bin, $sp) == 0){
+     strcpy(result, "$sp");
+  }
+  else if(strcmpi(bin, $s8) == 0){
+     strcpy(result, "$s8");
+  }
+  else if(strcmpi(bin, $ra) == 0){
+     strcpy(result, "$ra");
+  }
+
 }
 
 #endif
