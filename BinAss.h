@@ -37,17 +37,17 @@ void ADD_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "ADD ");
-
+    //registrador RS
 	substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-
+    //registrador RT
 	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-
+    //registrador RD
 	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
@@ -443,6 +443,46 @@ void DIV_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void MULT_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MULT ");
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void MULTU_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MULTU ");
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 
 void analiseBinary(char* binary){
 	char opCode[7] = "";
@@ -469,9 +509,9 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SUBU_FUN) == 0) )
     	SUBU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULT_FUN) == 0) )
-    	printf("MULT\n");
+    	MULT_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULTU_FUN) == 0) )
-    	printf("MULTU\n");
+        MULTU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, DIV_FUN) == 0) )
     	printf("DIV\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, DIVU_FUN) == 0) )
