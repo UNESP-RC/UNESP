@@ -1003,34 +1003,6 @@ void XOR(char* instruction){
   writeToFile(binary);
 }
 
-void XORI(char* instruction){
-  int minLen = 0;
-  int maxLen = 0;
-  char binary[33] = "";
-  char result[255] = ""; //Tamanho precisa ser grande neste caso, pois quando passamos para a função decimalToBinary
-                         //a função "itoa" lá dentro faz o complemento de dois, estourando o tamanho de uma string "pequena"
-
-  strcat(binary, getOPCode("XORI"));
-
-  //Register rs
-  getRegisterByType(result, instruction, 2);
-  strcat(binary, getRegister(result));
-
-  //Register rt
-  getRegisterByType(result, instruction, 1);
-  strcat(binary, getRegister(result));
-
-  //Find number
-  minLen = pos(instruction, ',', 2) + 1;
-  maxLen = strlen(instruction) - minLen;
-  substring(result, instruction, minLen, maxLen);
-  strcpy(result, trim(result));
-  decimalToBinary(result, result, 16);
-  strcat(binary, result);
-
-  printf("%s\n", binary);
-  writeToFile(binary);
-}
 
 void LH(char* instruction){
   int minLen = 0;

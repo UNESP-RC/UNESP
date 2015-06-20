@@ -432,7 +432,7 @@ void J_B(char* binary){
 
 	substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
-	
+
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
@@ -562,23 +562,23 @@ void BEQ_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "BEQ ");
-	
+
 	//Register rs
     substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Register rt
     substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//LABEL
     substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
-	
+
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
@@ -623,9 +623,313 @@ void SLL_B(char* binary){
     strcat(instruction, result);	
 	
 	printf("%s\n", instruction);
+	writeToFile(instruction);	
+}
+void SLLV_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SLLV ");
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RD
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void SRAV_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
 
+	strcat(instruction, "SRAV ");
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RD
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void SRLV_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SRLV ");
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RD
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void SB_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SB ");
+
+    //Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	strcat(instruction, "(");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ")");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void LBU_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "LBU ");
+
+    //Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	strcat(instruction, "(");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ")");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void LHU_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SLL ");
+	
+	//Register rd
+    substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Register rt
+	strcat(instruction, "LHU ");
+
+    //Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	strcat(instruction, "(");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ")");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void SH_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SH ");
+
+    //Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	strcat(instruction, "(");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ")");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void DIVU_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "DIVU");
+
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void LH_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "LH ");
+
+    //Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	strcat(instruction, "(");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ")");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void LB_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "LB ");
+
+    //Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	strcat(instruction, "(");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ")");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void LUI_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "ADDI ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void JAL_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "JAL ");
+
+	substring(result, binary, 7,32);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 void analiseBinary(char* binary){
 	char opCode[7] = "";
 	char funct[10] = "";
@@ -659,13 +963,13 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULTU_FUN) == 0) )
         MULTU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, DIV_FUN) == 0) )
-    	printf("DIV\n");
+        DIV_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, DIVU_FUN) == 0) )
-    	printf("DIVU\n");
+    	DIVU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MFHI_FUN) == 0) )
-    	printf("MFHI\n");
+    	MFHI_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MFLO_FUN) == 0) )
-    	printf("MFLO\n");
+    	MFLO_B(binary);
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MFCZ_FUN) == 0) ) //mfcZ
     //	printf("ADD\n");
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MTCZ_FUN) == 0) ) // mtcZ
@@ -690,8 +994,16 @@ void analiseBinary(char* binary){
     //	printf("SRLV\n");
 	//else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRAV_FUN) == 0) ) //SRAV
     //	printf("SRAV\n");
+    else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRA_FUN) == 0) ) // sra
+    	printf("SRA\n");
+    else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLLV_FUN ) == 0) ) // sllv
+    	SLLV_B(binary);
+    else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRLV_FUN) == 0) ) //SRLV
+    	SRLV_B(binary);
+	else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRAV_FUN) == 0) ) //SRAV
+    	SRAV_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, JMP_FUN) == 0) )
-    	printf("JR\n");
+    	JR_B(binary);
     else if	( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLTU_FUN) == 0) )
         SLTU_B(binary);
 
@@ -702,26 +1014,26 @@ void analiseBinary(char* binary){
     	ADDIU_B(binary);
     else if ( (strcmpi(opCode, LW_OP) == 0) )
     	LW_B(binary);
-    //else if ( (strcmpi(opCode, LH_OP) == 0) )
-    //	printf("LH\n");
+    else if ( (strcmpi(opCode, LH_OP) == 0) )
+    	LH_B(binary);
     else if ( (strcmpi(opCode, LHU_OP) == 0) )
-    	printf("LHU\n");
-    //else if ( (strcmpi(opCode, LB_OP) == 0) )
-    //	printf("LB\n");
+    	LHU_B(binary);
+    else if ( (strcmpi(opCode, LB_OP) == 0) )
+    	LB_B(binary);
     else if ( (strcmpi(opCode, LBU_OP) == 0) )
-    	printf("LBU\n");
+    	LBU_B(binary);
     else if ( (strcmpi(opCode, SW_OP) == 0) )
-    	printf("SW\n");
+    	SW_B(binary);
     else if ( (strcmpi(opCode, SH_OP) == 0) )
-    	printf("SH\n");
+    	SH_B(binary);
     else if ( (strcmpi(opCode, SB_OP) == 0) )
-    	printf("SB\n");
+    	SB_B(binary);
     else if ( (strcmpi(opCode, LUI_OP) == 0) )
-    	printf("LUI\n");
+    	LUI_B(binary);
     else if ( (strcmpi(opCode, ANDI_OP) == 0) 	)
     	ANDI_B(binary);
     else if ( (strcmpi(opCode, ORI_OP) == 0) )
-    	printf("ORI\n");
+    	ORI_B(binary);
     else if ( (strcmpi(opCode, SLTI_OP) == 0) )
         SLTI_B(binary);
     else if ( (strcmpi(opCode, BEQ_OP) == 0) )
@@ -733,6 +1045,6 @@ void analiseBinary(char* binary){
 	else if ( (strcmpi(opCode, J_OP) == 0) )
     	J_B(binary);
     else if ( (strcmpi(opCode, JAL_OP) == 0) )
-    	printf("JAL\n");
+    	JAL_B(binary);
 }
 #endif
