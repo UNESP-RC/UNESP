@@ -1087,11 +1087,11 @@ void JR (char* instruction){
   strcat(binary, getOPCode("JR"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
-  strcat(binary, getFunction("JR"));
+  strcat(binary, getFunction("JMP"));
 
   printf("%s\n", binary);
   writeToFile(binary);
