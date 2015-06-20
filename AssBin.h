@@ -988,6 +988,68 @@ void XOR(char* instruction){
   writeToFile(binary);
 }
 
+void LH(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = "";
+
+  strcat(binary, getOPCode("LH"));
+
+  //Register rs
+  minLen = pos(instruction, '(', 1) + 1;
+  maxLen = pos(instruction, ')', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Constant
+  minLen = pos(instruction, ',', 1) + 1;
+  maxLen = pos(instruction, '(', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, getRegister(result));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void LB(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[255] = "";
+
+  strcat(binary, getOPCode("LB"));
+
+  //Register rs
+  minLen = pos(instruction, '(', 1) + 1;
+  maxLen = pos(instruction, ')', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  //Constant
+  minLen = pos(instruction, ',', 1) + 1;
+  maxLen = pos(instruction, '(', 1) - minLen;
+  substring(result, instruction, minLen, maxLen);
+  strcpy(result, trim(result));
+  decimalToBinary(result, result, 16);
+  strcat(binary, getRegister(result));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
 
 void analiseInstruction(char* instruction){
    int minLen = 0;
@@ -1024,11 +1086,11 @@ void analiseInstruction(char* instruction){
    else if(strcmpi(result, "LW") == 0)
      LW(instruction);
    else if(strcmpi(result, "LH") == 0)
-     printf("\n*LH*\n"); // LH(instruction);
+     LH(instruction);
    else if(strcmpi(result, "LHU") == 0)
      LHU(instruction);
    else if(strcmpi(result, "LB") == 0)
-     printf("\n*LB*\n"); // LB(instruction);
+     LB(instruction);
    else if(strcmpi(result, "LBU") == 0)
      LBU(instruction);
    else if(strcmpi(result, "SW") == 0)
