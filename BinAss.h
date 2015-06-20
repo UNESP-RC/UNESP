@@ -483,7 +483,6 @@ void MULTU_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-
 void MFHI_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -499,7 +498,6 @@ void MFHI_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-
 void MFLO_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -511,6 +509,35 @@ void MFLO_B(char* binary){
 	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void SW_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SW ");
+
+    //Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	strcat(instruction, "(");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ")");
 
 	printf("%s\n", instruction);
 	writeToFile(instruction);
