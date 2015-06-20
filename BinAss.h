@@ -178,7 +178,6 @@ void OR_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-
 void ORI_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
@@ -203,7 +202,6 @@ void ORI_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-
 void SLT_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -425,7 +423,6 @@ void SLTI_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-
 void J_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
@@ -435,8 +432,10 @@ void J_B(char* binary){
 	
 	substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);
 }
-
 void DIV_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -557,6 +556,32 @@ void SW_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void BEQ_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "BEQ ");
+	
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//LABEL
+    substring(result, binary, 25, 6);
+	strcat(instruction, gLabelB[getControlLabelB(result)].title);
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 
 void analiseBinary(char* binary){
 	char opCode[7] = "";
@@ -564,6 +589,7 @@ void analiseBinary(char* binary){
 
 	strcpy(binary, trim(binary));
 
+    //Tratamento para label
 	if(strlen(binary) == 6){
 		char llabel[10] = "";
 		strcpy(llabel, gLabelB[getControlLabelB(binary)].title);
@@ -656,7 +682,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, SLTI_OP) == 0) )
         SLTI_B(binary);
     else if ( (strcmpi(opCode, BEQ_OP) == 0) )
-    	printf("BEQ\n");
+    	BEQ_B(binary);
     else if ( (strcmpi(opCode, BNE_OP) == 0) )
     	printf("BNE\n");
 
