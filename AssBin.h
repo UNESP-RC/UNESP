@@ -766,6 +766,59 @@ void DIVU(char* instruction){
   writeToFile(binary);
 }
 
+void NOR(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("NOR"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("NOR"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
+
+void XOR(char* instruction){
+  int minLen = 0;
+  int maxLen = 0;
+  char binary[33] = "";
+  char result[10] = "";
+
+  strcat(binary, getOPCode("XOR"));
+
+  //Register rs
+  getRegisterByType(result, instruction, 2);
+  strcat(binary, getRegister(result));
+
+  //Register rt
+  getRegisterByType(result, instruction, 3);
+  strcat(binary, getRegister(result));
+
+  //Register rd
+  getRegisterByType(result, instruction, 1);
+  strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Shamt
+  strcat(binary, getFunction("XOR"));
+
+  printf("%s\n", binary);
+  writeToFile(binary);
+}
 
 
 void analiseInstruction(char* instruction){
@@ -831,9 +884,9 @@ void analiseInstruction(char* instruction){
    if(strcmpi(result, "ORI") == 0)
      ORI(instruction);
    else if(strcmpi(result, "XOR") == 0)
-     printf("\n*XOR*\n"); // XOR(instruction);
+     XOR(instruction);
    if(strcmpi(result, "NOR") == 0)
-     printf("\n*NOR*\n"); // NOR(instruction);
+     NOR(instruction);
    else if(strcmpi(result, "SLT") == 0)
      SLT(instruction);
    else if(strcmpi(result, "SLTI") == 0)
