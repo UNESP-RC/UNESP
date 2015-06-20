@@ -43,14 +43,14 @@ void ADD_B(char* binary){
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 11, 5);
+    substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
-	strcat(instruction, aux);
+	strcat(instruction, aux);	
 
 	printf("%s\n", instruction);
 	writeToFile(instruction);
@@ -343,7 +343,6 @@ void ANDI_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
-
 void LW_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
@@ -397,6 +396,19 @@ void SLTI_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void J_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "J ");
+	
+	substring(result, binary, 25, 6);
+	strcat(instruction, gLabelB[getControlLabelB(result)].title);
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 
 void analiseBinary(char* binary){
 	char opCode[7] = "";
@@ -405,8 +417,11 @@ void analiseBinary(char* binary){
 	strcpy(binary, trim(binary));
 
 	if(strlen(binary) == 6){
-		printf("%s\n", gLabelB[getControlLabelB(binary)].title);
-		writeToFile(gLabelB[getControlLabelB(binary)].title);
+		char llabel[10] = "";
+		strcpy(llabel, gLabelB[getControlLabelB(binary)].title);
+		strcat(llabel, ":");
+		printf("%s\n", llabel);
+		writeToFile(llabel);
 		return;
 	}
 
@@ -499,7 +514,7 @@ void analiseBinary(char* binary){
 
 	//Binários tipo J
 	else if ( (strcmpi(opCode, J_OP) == 0) )
-    	printf("J\n");
+    	J_B(binary);
     else if ( (strcmpi(opCode, JAL_OP) == 0) )
     	printf("JAL\n");
 }
