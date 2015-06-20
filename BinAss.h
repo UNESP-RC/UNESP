@@ -37,11 +37,12 @@ void ADD_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "ADD ");
-
+    //registrador RS
 	substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
+<<<<<<< HEAD
 
     substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
@@ -49,6 +50,15 @@ void ADD_B(char* binary){
 	strcat(instruction, ", ");
 
 	substring(result, binary, 11, 5);
+=======
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RD
+	substring(result, binary, 6, 5);
+>>>>>>> 4e89d6e53d94377663bd8aa0cb04e2fd397287b4
 	getNameRegister(aux, result);
 	strcat(instruction, aux);	
 
@@ -175,6 +185,32 @@ void OR_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+
+void ORI_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "ORI");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+
 void SLT_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -347,28 +383,28 @@ void LW_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
 	char aux[10] = "";
-	
+
 	strcat(instruction, "LW ");
-    
+
     //Register rt
     substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Constant
 	substring(result, binary, 16, 16);
-	binaryToDecimal(result, result);	
+	binaryToDecimal(result, result);
 	strcat(instruction, result);
-	
+
 	strcat(instruction, "(");
-	
+
 	//Register rs
     substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ")");
-	
+
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
@@ -396,6 +432,7 @@ void SLTI_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+<<<<<<< HEAD
 void J_B(char* binary){
 	char instruction[255] = "";
 	char result[255] = "";
@@ -406,6 +443,98 @@ void J_B(char* binary){
 	substring(result, binary, 25, 6);
 	strcat(instruction, gLabelB[getControlLabelB(result)].title);
 	
+=======
+void DIV_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "DIV ");
+
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void MULT_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MULT ");
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void MULTU_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MULTU ");
+    //registrador RS
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+    //registrador RT
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+
+void MFHI_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MFHI ");
+
+	// Registrador rd
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+
+void MFLO_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "MFLO ");
+
+	// Registrador rd
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+>>>>>>> 4e89d6e53d94377663bd8aa0cb04e2fd397287b4
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
@@ -438,9 +567,9 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SUBU_FUN) == 0) )
     	SUBU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULT_FUN) == 0) )
-    	printf("MULT\n");
+    	MULT_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULTU_FUN) == 0) )
-    	printf("MULTU\n");
+        MULTU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, DIV_FUN) == 0) )
     	printf("DIV\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, DIVU_FUN) == 0) )
@@ -518,5 +647,4 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, JAL_OP) == 0) )
     	printf("JAL\n");
 }
-
 #endif
