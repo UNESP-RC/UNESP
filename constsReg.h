@@ -4,7 +4,7 @@
 #include <string.h>
 
 //Registrador ZERO (Valor constante zero)
-char $SZERO[] = "00000";
+char $ZERO[] = "00000";
 
 //Temporário do montador
 char $at[] = "00001";
@@ -65,8 +65,8 @@ char $ra[] = "11111";
 
 //Função para retornar o endereço binário de cada registrador
 char* getRegister(char* reg){
-  if(strcmpi(reg, "$SZERO") == 0){
-     return $SZERO;
+  if(strcmpi(reg, "$ZERO") == 0){
+     return $ZERO;
   }
   else if(strcmpi(reg, "$at") == 0){
      return $at;
@@ -179,8 +179,8 @@ char* getRegister(char* reg){
 
 // Função para pegar o nome do registrador pelo binário
 void getNameRegister(char* result, char* bin){
- if(strcmpi(bin, $SZERO) == 0)
-    strcpy(result, "$SZERO");
+ if(strcmpi(bin, $ZERO) == 0)
+    strcpy(result, "$ZERO");
  else if(strcmpi(bin, $at) == 0){
      strcpy(result, "$at");
   }
