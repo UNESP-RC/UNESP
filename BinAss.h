@@ -1,6 +1,5 @@
 #ifndef _BinAss_
 #define _BinAss_
-
 #include "constsOP_Fun.h"
 #include "constsReg.h"
 #include "useful.h"
@@ -150,6 +149,79 @@ void OR_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void SLT_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SLT ");
+
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void SLTU_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SLTU ");
+
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+void SUBU_B(char* binary){
+	char instruction[255] = "";
+	char result[10] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SUBU ");
+
+	substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
+
 
 
 void analiseBinary(char* binary){
@@ -169,7 +241,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SUB_FUN) == 0) )
     	SUB_B(instruction);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SUBU_FUN) == 0) )
-    	printf("SUBU\n");
+    	SUBU_B(instruction);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULT_FUN) == 0) )
     	printf("MULT\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULTU_FUN) == 0) )
@@ -187,7 +259,7 @@ void analiseBinary(char* binary){
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MTCZ_FUN) == 0) ) // mtcZ
     //	printf("ADD\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, AND_FUN) == 0) )
-    	printf("AND\n");
+    	AND_B(instruction);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, OR_FUN) == 0) )
     	OR_B(instruction);
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, XOR_FUN) == 0) ) // xor
@@ -195,7 +267,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, NOR_FUN) == 0) )
         NOR_B(instruction);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLT_FUN) == 0) )
-    	printf("SLT\n");
+    	SLT_B(instruction);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLL_FUN) == 0) )
     	printf("SLL\n");
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRA_FUN) == 0) ) // sra
@@ -208,6 +280,8 @@ void analiseBinary(char* binary){
     //	printf("SRAV\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, JMP_FUN) == 0) )
     	printf("JR\n");
+    else if	( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLTU_FUN) == 0) )
+        SLTU_B(instruction);
 
     //Binários tipo I
     else if ( (strcmpi(opCode, ADDI_OP) == 0) )
