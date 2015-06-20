@@ -22,8 +22,8 @@ int getControlLabelB(char* prLabelB){
 	char stCtrlLabel[10] = "";
 	char title[10] = "LABEL";
 	itoa(controlLabelB, stCtrlLabel, 10);
-	strcat(title, stCtrlLabel);	
-	
+	strcat(title, stCtrlLabel);
+
 	strcpy(gLabelB[controlLabelB].binary, prLabelB);
 	strcpy(gLabelB[controlLabelB].title, title);
 
@@ -254,24 +254,24 @@ void analiseBinary(char* binary){
 	char funct[10] = "";
 
 	strcpy(binary, trim(binary));
-	
+
 	if(strlen(binary) < 32){
 		printf("%s\n", gLabelB[getControlLabelB(binary)].title);
 		return;
 	}
-	
-	substring(opCode, binary, 0, 6);	
+
+	substring(opCode, binary, 0, 6);
 	substring(funct, binary, 20, 6);
 
 	//Binários tipo R
     if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, ADD_FUN) == 0) )
     	ADD_B(binary);
 	else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, ADDU_FUN) == 0) )
-    	ADDU_B(instruction);
+    	ADDU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SUB_FUN) == 0) )
-    	SUB_B(instruction);
+    	SUB_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SUBU_FUN) == 0) )
-    	SUBU_B(instruction);
+    	SUBU_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULT_FUN) == 0) )
     	printf("MULT\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MULTU_FUN) == 0) )
@@ -289,15 +289,15 @@ void analiseBinary(char* binary){
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, MTCZ_FUN) == 0) ) // mtcZ
     //	printf("ADD\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, AND_FUN) == 0) )
-    	AND_B(instruction);
+    	AND_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, OR_FUN) == 0) )
-    	OR_B(instruction);
+    	OR_B(binary);
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, XOR_FUN) == 0) ) // xor
     //	printf("XOR\n");
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, NOR_FUN) == 0) )
-        NOR_B(instruction);
+        NOR_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLT_FUN) == 0) )
-    	SLT_B(instruction);
+    	SLT_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLL_FUN) == 0) )
     	printf("SLL\n");
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRA_FUN) == 0) ) // sra
@@ -311,7 +311,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, JMP_FUN) == 0) )
     	printf("JR\n");
     else if	( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLTU_FUN) == 0) )
-        SLTU_B(instruction);
+        SLTU_B(binary);
 
     //Binários tipo I
     else if ( (strcmpi(opCode, ADDI_OP) == 0) )
