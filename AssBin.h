@@ -560,23 +560,24 @@ void SLL(char* instruction){
 
   strcat(binary, getOPCode("SLL"));
 
+  //Register rs
+  strcat(binary, "00000"); 
+
   //Register rt
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 2);  
   strcat(binary, getRegister(result));
 
   //Register rd
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
-
-  //Register rd
+  
+  //Shamt
   minLen = pos(instruction, ',', 2) + 1;
   maxLen = strlen(instruction) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
   decimalToBinary(result, result, 5);
   strcat(binary, result);
-
-  strcat(binary, "00000"); //Shamt
 
   strcat(binary, getFunction("SLL"));
 

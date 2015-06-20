@@ -598,6 +598,33 @@ void JR_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void SLL_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SLL ");
+	
+	//Register rd
+    substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Shamt
+    substring(result, binary, 21, 5);
+    binaryToDecimal(result, result);
+    strcat(instruction, result);	
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 
 void analiseBinary(char* binary){
 	char opCode[7] = "";
@@ -654,7 +681,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLT_FUN) == 0) )
     	SLT_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLL_FUN) == 0) )
-    	printf("SLL\n");
+    	SLL_B(binary);
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRA_FUN) == 0) ) // sra
     //	printf("SRA\n");
     //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLLV_FUN ) == 0) ) // sllv
