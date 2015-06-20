@@ -3,12 +3,12 @@
 //Registrador ZERO (Valor constante zero)
 char $SZERO[] = "00000";
 
-//Temporário do montador 
+//Temporário do montador
 char $at[] = "00001";
 
 //Valores de retorno de funções
-char $v0[] = "00010"; 
-char $v1[] = "00011"; 
+char $v0[] = "00010";
+char $v1[] = "00011";
 
 //Argumentos de funções
 char $a0[] = "00100";
@@ -21,6 +21,10 @@ char $a6[] = "01010";
 char $a7[] = "01011";
 
 //Registradores temporários
+char $t0[] = "01000";
+char $t1[] = "01001";
+char $t2[] = "01010";
+char $t3[] = "01011";
 char $t4[] = "01100";
 char $t5[] = "01101";
 char $t6[] = "01110";
@@ -68,13 +72,13 @@ char* getRegister(char* reg){
      return $v0;
   }
   else if(strcmpi(reg, "$v1") == 0){
-     return $v1;               
+     return $v1;
   }
   else if(strcmpi(reg, "$a0") == 0){
-     return $a0;               
+     return $a0;
   }
   else if(strcmpi(reg, "$a1") == 0){
-     return $a1;               
+     return $a1;
   }
   else if(strcmpi(reg, "$a2") == 0){
      return $a2;
@@ -93,6 +97,15 @@ char* getRegister(char* reg){
   }
   else if(strcmpi(reg, "$a7") == 0){
      return $a7;
+  }
+  else if(strcmpi(reg, "$t1") == 0){
+     return $t1;
+  }
+  else if(strcmpi(reg, "$t2") == 0){
+     return $t2;
+  }
+  else if(strcmpi(reg, "$t3") == 0){
+     return $t3;
   }
   else if(strcmpi(reg, "$t4") == 0){
      return $t4;
@@ -154,6 +167,6 @@ char* getRegister(char* reg){
   else if(strcmpi(reg, "$ra") == 0){
      return $ra;
   }
-  
+
   return reg;
 }

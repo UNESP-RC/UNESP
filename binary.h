@@ -27,9 +27,13 @@ void decimalToBinary(char* number, char* result, int tam)
 {  
     int decimal, total, potenc;
     decimal = atoi(number);
+    
     itoa(decimal, result, 2); 
     
-    stringComplete(tam, result, result);
+    if (strlen(result) > tam)
+    	substring(result, result, strlen(result) - tam, tam);
+    else
+    	stringComplete(tam, result, result);    
 }
 
 void undoTwoComplement(char* number){
@@ -80,11 +84,11 @@ void binaryToDecimal(char* number, char* result)
        if (aux!= 1) 
        {         
           if(number[i] == '1')
-            decimal += pow (2,aux-1); 
+            decimal += pow(2, aux - 1); 
        }else{   
             if(number[i]== '1') 
-               decimal = decimal+1;
-            }        
+               decimal = decimal + 1;
+        }        
                
         i++;
         aux--; 
