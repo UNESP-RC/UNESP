@@ -1,3 +1,6 @@
+#ifndef _AssBin_
+#define _AssBin_
+
 #include "constsOP_Fun.h"
 #include "constsReg.h"
 #include "useful.h"
@@ -920,3 +923,5 @@ void analiseInstruction(char* instruction){
       writeToFile(gLabel[getControlLabel(label, 1)].binary);
    }
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef _useful_
+#define _useful_
+
 #include<stdlib.h>
 #include<ctype.h>
 
@@ -48,3 +51,4 @@ char* trim (char *s)
     return s;
 }
 
+#endif

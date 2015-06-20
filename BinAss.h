@@ -1,3 +1,6 @@
+#ifndef _BinAss_
+#define _BinAss_
+
 #include "constsOP_Fun.h"
 #include "constsReg.h"
 #include "useful.h"
@@ -99,3 +102,5 @@ void analiseInstructionB(char* instruction){
     else if ( (strcmpi(opCode, JAL_OP) == 0) )
     	printf("JAL\n");
 }
+
+#endif

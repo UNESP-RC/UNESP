@@ -1,3 +1,6 @@
+#ifndef _constsOP_Fun_
+#define _constsOP_Fun_
+
 #include <string.h>
 
 //Campo OP Code para Funções tipo R
@@ -42,8 +45,8 @@ char LHU_OP[] = "100101";
 char SB_OP[] = "101000";
 char SH_OP[] = "101001";
 char SW_OP[] = "101011";
-char LH_OP[] = "100001"
-char LB_OP[] = "100000"
+char LH_OP[] = "100001";
+char LB_OP[] = "100000";
 
 //Campo OP Code para Funções tipo J
 char J_OP[] = "000010";
@@ -171,3 +174,5 @@ char* getOPCode(char* FUN){
   else
      return R_OP;
 }
+
+#endif
