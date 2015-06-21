@@ -194,7 +194,7 @@ void getNameRegister(char* result, char* bin){
      strcpy(result, "$t1");
   }
   else if(strcmpi(bin, $t2) == 0){
-     strcpy(result, "$t3");
+     strcpy(result, "$t2");
   }
   else if(strcmpi(bin, $t3) == 0){
      strcpy(result, "$t3");
@@ -242,7 +242,7 @@ void getNameRegister(char* result, char* bin){
     strcpy(result, "$t9");
   }
   else if(strcmpi(bin, $k0) == 0){
-     strcpy(result, $k0);
+     strcpy(result, "$k0");
   }
   else if(strcmpi(bin, $k1) == 0){
      strcpy(result, "$k1");
