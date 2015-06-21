@@ -86,19 +86,7 @@ char* getRegister(char* reg){
   else if(strcmpi(reg, "$a3") == 0){
      return $a3;
   }
-  else if(strcmpi(reg, "$a4") == 0){
-     return $a4;
-  }
-  else if(strcmpi(reg, "$a5") == 0){
-     return $a5;
-  }
-  else if(strcmpi(reg, "$a6") == 0){
-     return $a6;
-  }
-  else if(strcmpi(reg, "$a7") == 0){
-     return $a7;
-  }
-    else if(strcmpi(reg, "$t0") == 0){
+  else if(strcmpi(reg, "$t0") == 0){
      return $t0;
   }
   else if(strcmpi(reg, "$t1") == 0){
@@ -198,18 +186,6 @@ void getNameRegister(char* result, char* bin){
   }
   else if(strcmpi(bin, $a3) == 0){
      strcpy(result, "$a3");
-  }
-  else if(strcmpi(bin, $a4) == 0){
-     strcpy(result, "$a4");
-  }
-  else if(strcmpi(bin, $a5) == 0){
-     strcpy(result, "$a5");
-  }
-  else if(strcmpi(bin, $a6) == 0){
-     strcpy(result, "$a6");
-  }
-  else if(strcmpi(bin, $a7) == 0){
-     strcpy(result, "$a7");
   }
   else if(strcmpi(bin, $t0) == 0){
      strcpy(result, "$t0");
