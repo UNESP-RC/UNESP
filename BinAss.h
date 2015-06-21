@@ -583,6 +583,32 @@ void BEQ_B(char* binary){
 	printf("%s\n", instruction);
 	writeToFile(instruction);
 }
+void BNE_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "BNE ");
+
+	//Register rs
+    substring(result, binary, 6, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+
+	//LABEL
+    substring(result, binary, 25, 6);
+	strcat(instruction, gLabelB[getControlLabelB(result)].title);
+
+	printf("%s\n", instruction);
+	writeToFile(instruction);
+}
 void JR_B(char* binary){
 	char instruction[255] = "";
 	char result[10] = "";
@@ -604,6 +630,60 @@ void SLL_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "SLL ");
+	
+	//Register rd
+    substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Shamt
+    substring(result, binary, 21, 5);
+    binaryToDecimal(result, result);
+    strcat(instruction, result);	
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);	
+}
+void SRL_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SRL ");
+	
+	//Register rd
+    substring(result, binary, 16, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Register rt
+    substring(result, binary, 11, 5);
+	getNameRegister(aux, result);
+	strcat(instruction, aux);
+	strcat(instruction, ", ");
+	
+	//Shamt
+    substring(result, binary, 21, 5);
+    binaryToDecimal(result, result);
+    strcat(instruction, result);	
+	
+	printf("%s\n", instruction);
+	writeToFile(instruction);	
+}
+void SRA_B(char* binary){
+	char instruction[255] = "";
+	char result[255] = "";
+	char aux[10] = "";
+
+	strcat(instruction, "SRA ");
 	
 	//Register rd
     substring(result, binary, 16, 5);
@@ -986,16 +1066,10 @@ void analiseBinary(char* binary){
     	SLT_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLL_FUN) == 0) )
     	SLL_B(binary);
-    //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRA_FUN) == 0) ) // sra
-    //	printf("SRA\n");
-    //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLLV_FUN ) == 0) ) // sllv
-    //	printf("SLLV\n");
-    //else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRLV_FUN) == 0) ) //SRLV
-    //	printf("SRLV\n");
-	//else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRAV_FUN) == 0) ) //SRAV
-    //	printf("SRAV\n");
+    else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRL_FUN) == 0) )
+    	SRL_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRA_FUN) == 0) ) // sra
-    	printf("SRA\n");
+    	SRA_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SLLV_FUN ) == 0) ) // sllv
     	SLLV_B(binary);
     else if ( (strcmpi(opCode, R_OP) == 0) && (strcmpi(funct, SRLV_FUN) == 0) ) //SRLV
@@ -1039,7 +1113,7 @@ void analiseBinary(char* binary){
     else if ( (strcmpi(opCode, BEQ_OP) == 0) )
     	BEQ_B(binary);
     else if ( (strcmpi(opCode, BNE_OP) == 0) )
-    	printf("BNE\n");
+    	BNE_B(binary);
 
 	//Binários tipo J
 	else if ( (strcmpi(opCode, J_OP) == 0) )
