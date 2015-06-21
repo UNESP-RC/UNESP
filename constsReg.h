@@ -61,7 +61,7 @@ char $ra[] = "11111";
 
 //Função para retornar o endereço binário de cada registrador
 char* getRegister(char* reg){
-	
+
   if(strcmpi(reg, "$ZERO") == 0){
      return $ZERO;
   }
