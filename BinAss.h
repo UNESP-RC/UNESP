@@ -591,10 +591,9 @@ void JR_B(char* binary){
 	strcat(instruction, "JR ");
 
     //registrador RS
-	substring(result, binary, 16, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
-	strcat(instruction, ", ");
 
 	printf("%s\n", instruction);
 	writeToFile(instruction);
