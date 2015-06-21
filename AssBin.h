@@ -561,16 +561,16 @@ void SLL(char* instruction){
   strcat(binary, getOPCode("SLL"));
 
   //Register rs
-  strcat(binary, "00000"); 
+  strcat(binary, "00000");
 
   //Register rt
-  getRegisterByType(result, instruction, 2);  
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rd
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
-  
+
   //Shamt
   minLen = pos(instruction, ',', 2) + 1;
   maxLen = strlen(instruction) - minLen;
@@ -1099,12 +1099,12 @@ void JR (char* instruction){
 
   strcat(binary, getOPCode("JR"));
 
-  //Register rt
-  strcat(binary, "00000");
-
   //Register rs
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
+
+  //Register rt
+  strcat(binary, "00000");
 
   //Register rd
   strcat(binary, "00000");
