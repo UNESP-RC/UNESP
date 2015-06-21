@@ -463,16 +463,17 @@ void MULT_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "MULT ");
+
     //registrador RS
-	substring(result, binary, 16, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
+
     //registrador RT
 	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
-	strcat(instruction, ", ");
 
 	printf("%s\n", instruction);
 	writeToFile(instruction);
