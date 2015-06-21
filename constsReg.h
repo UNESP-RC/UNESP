@@ -18,10 +18,6 @@ char $a0[] = "00100";
 char $a1[] = "00101";
 char $a2[] = "00110";
 char $a3[] = "00111";
-char $a4[] = "01000";
-char $a5[] = "01001";
-char $a6[] = "01010";
-char $a7[] = "01011";
 
 //Registradores temporários
 char $t0[] = "01000";
@@ -65,6 +61,7 @@ char $ra[] = "11111";
 
 //Função para retornar o endereço binário de cada registrador
 char* getRegister(char* reg){
+	
   if(strcmpi(reg, "$ZERO") == 0){
      return $ZERO;
   }
