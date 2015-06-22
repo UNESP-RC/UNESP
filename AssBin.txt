@@ -1,2 +1,1 @@
-SRA $s1, $s2, 10
-SRAV $s1, $s2, $s3
+XOR $s1, $s2, $s3

@@ -121,6 +121,9 @@ char* getFunction(char* OPCode){
   else if(strcmpi(OPCode, "SRAV") == 0){
      return SRAV_FUN;
   }
+   else if(strcmpi(OPCode, "XOR") == 0){
+     return XOR_FUN;
+  }
 
   return "FUN - ERRO!";
 }
