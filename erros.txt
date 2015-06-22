@@ -1,11 +1,7 @@
-erros que achei, testando junto com o site.
+﻿erros que achei, testando junto com o site.
 ps: provavelmente terá alguns, que foi erro meu de escrita >.<
 pps: foi só de assembly para binário. falta testar binário para assembly. 
-
-srl $t1, $s2, shamt 
-sra $t1, $s2, shamt 
-srav $t1, $s2, $s3 
-
+ 
 xor $t1, $s2, $s3
 <<<<<<< HEAD
 

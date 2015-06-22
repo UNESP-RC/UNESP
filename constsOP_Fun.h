@@ -115,6 +115,12 @@ char* getFunction(char* OPCode){
   else if(strcmpi(OPCode, "SLTU") == 0){
      return SLTU_FUN;
   }
+  else if(strcmpi(OPCode, "SRA") == 0){
+     return SRA_FUN;
+  }
+  else if(strcmpi(OPCode, "SRAV") == 0){
+     return SRAV_FUN;
+  }
 
   return "FUN - ERRO!";
 }

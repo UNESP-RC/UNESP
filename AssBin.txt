@@ -1,2 +1,2 @@
-SRL $s1, $s2, 10
-SLL $s1, $s2, 10
+SRA $s1, $s2, 10
+SRAV $s1, $s2, $s3

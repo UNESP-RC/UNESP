@@ -507,11 +507,11 @@ void SRAV(char* instruction){
   strcat(binary, getOPCode("SRAV"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 3);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rd
@@ -626,14 +626,18 @@ void SRA(char* instruction){
 
   strcat(binary, getOPCode("SRA"));
 
+  //Register rs
+  strcat(binary, "00000");
+
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rd
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
+  //Shamt
   minLen = pos(instruction, ',', 2) + 1;
   maxLen = strlen(instruction) - minLen;
   substring(result, instruction, minLen, maxLen);
