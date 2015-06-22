@@ -1,2 +1,2 @@
-SLLV $s1, $s2, $s3
-SRLV $at, $s2, $s3
+MFHI $s1
+MFLO $s1

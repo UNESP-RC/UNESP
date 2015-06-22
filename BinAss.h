@@ -504,8 +504,8 @@ void MFHI_B(char* binary){
 
 	strcat(instruction, "MFHI ");
 
-	// Registrador rd
-	substring(result, binary, 21, 5);
+    //registrador RS
+	substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 
@@ -519,8 +519,8 @@ void MFLO_B(char* binary){
 
 	strcat(instruction, "MFLO ");
 
-	// Registrador rd
-	substring(result, binary, 6, 5);
+    //registrador RS
+	substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 

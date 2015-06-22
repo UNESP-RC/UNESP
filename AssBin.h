@@ -329,7 +329,8 @@ void MFHI(char* instruction){
 
   strcat(binary, getOPCode("MFHI"));
 
-  strcat(binary, "00000"); //Shamt
+  strcat(binary, "00000"); //rs
+  strcat(binary, "00000"); //rt
 
   //Register rd
   getRegisterByType(result, instruction, 1);
@@ -351,7 +352,8 @@ void MFLO(char* instruction){
 
   strcat(binary, getOPCode("MFLO"));
 
-  strcat(binary, "00000"); //Shamt
+  strcat(binary, "00000"); //rs
+  strcat(binary, "00000"); //rt
 
   //Register rd
   getRegisterByType(result, instruction, 1);
