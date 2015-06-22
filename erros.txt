@@ -1,0 +1,19 @@
+erros que achei, testando junto com o site.
+ps: provavelmente terá alguns, que foi erro meu de escrita >.<
+pps: foi só de assembly para binário. falta testar binário para assembly. 
+
+srl $t1, $s2, shamt 
+sra $t1, $s2, shamt 
+srav $t1, $s2, $s3 
+
+xor $t1, $s2, $s3
+j 4
+div $t1, $s2, $s3 
+lui $t1, 1 
+jal 2  
+multu $t1, $s2 
+mfhi $t1 
+mflo $t1 
+divu $t1, $s2  
+sllv $t1, $s2, $s3 
+srlv $t1, $s2, $s3 
