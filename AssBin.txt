@@ -1,1 +1,2 @@
-ADD $s1, $s2, $s3
+DIV $t2, $t3
+DIVU $t2, $t3, 

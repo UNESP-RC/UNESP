@@ -889,12 +889,14 @@ void MULTU(char* instruction){
   strcat(binary, getOPCode("MULTU"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //Register rd
 
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("MULTU"));
@@ -919,6 +921,8 @@ void DIV(char* instruction){
   getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
+  strcat(binary, "00000"); //rd
+
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("DIV"));
 
@@ -941,6 +945,8 @@ void DIVU(char* instruction){
   //Register rt
   getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
+
+  strcat(binary, "00000"); //rd
 
   strcat(binary, "00000"); //Shamt
   strcat(binary, getFunction("DIVU"));
@@ -1002,7 +1008,6 @@ void XOR(char* instruction){
   printf("%s\n", binary);
   writeToFile(binary);
 }
-
 
 void LH(char* instruction){
   int minLen = 0;
