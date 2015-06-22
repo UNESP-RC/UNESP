@@ -1,2 +1,2 @@
-DIV $t2, $t3
-DIVU $t2, $t3
+SRL $s1, $s2, 10
+SLL $s1, $s2, 10

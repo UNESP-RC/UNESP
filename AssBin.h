@@ -593,6 +593,9 @@ void SRL(char* instruction){
 
   strcat(binary, getOPCode("SRL"));
 
+  //Register rs
+  strcat(binary, "00000");
+
   //Register rt
   getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
@@ -601,15 +604,13 @@ void SRL(char* instruction){
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
-  //Register rd
+  //Shamt
   minLen = pos(instruction, ',', 2) + 1;
   maxLen = strlen(instruction) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
   decimalToBinary(result, result, 5);
   strcat(binary, result);
-
-  strcat(binary, "00000"); //Shamt
 
   strcat(binary, getFunction("SRL"));
 
