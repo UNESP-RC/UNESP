@@ -1076,7 +1076,7 @@ void LB(char* instruction){
   writeToFile(binary);
 }
 
-void LUI (char* instruction){
+void LUI(char* instruction){
   int minLen = 0;
   int maxLen = 0;
   char binary[33] = "";
@@ -1085,17 +1085,20 @@ void LUI (char* instruction){
 
   strcat(binary, getOPCode("LUI"));
 
+   strcat(binary, "00000");//rs
+
   //Register rt
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   //Find number
-  minLen = pos(instruction, ',', 2) + 1;
+  minLen = pos(instruction, ',', 1) + 1;
   maxLen = strlen(instruction) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
   decimalToBinary(result, result, 16);
   strcat(binary, result);
+
 
   printf("%s\n", binary);
   writeToFile(binary);

@@ -983,12 +983,17 @@ void LUI_B(char* binary){
 	char result[255] = "";
 	char aux[10] = "";
 
-	strcat(instruction, "ADDI ");
+	strcat(instruction, "LUI ");
 
-	substring(result, binary, 6, 5);
+	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
+
+	//Constant
+	substring(result, binary, 16, 16);
+	binaryToDecimal(result, result);
+	strcat(instruction, result);
 
 	printf("%s\n", instruction);
 	writeToFile(instruction);

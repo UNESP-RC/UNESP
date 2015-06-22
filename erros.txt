@@ -2,13 +2,7 @@
 ps: provavelmente terá alguns, que foi erro meu de escrita >.<
 pps: foi só de assembly para binário. falta testar binário para assembly. 
  
-xor $t1, $s2, $s3
-<<<<<<< HEAD
 
-=======
-j 4
->>>>>>> 8d94838d97596284fb7f2e68706e86746cee3fd5
-lui $t1, 1 
 jal 2  
 
 mfhi $t1 
