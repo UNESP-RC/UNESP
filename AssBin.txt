@@ -1,1 +1,2 @@
-JAL 10
+SLLV $s1, $s2, $s3
+SRLV $at, $s2, $s3

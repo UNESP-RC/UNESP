@@ -124,6 +124,12 @@ char* getFunction(char* OPCode){
    else if(strcmpi(OPCode, "XOR") == 0){
      return XOR_FUN;
   }
+  else if(strcmpi(OPCode, "SLLV") == 0){
+     return SLLV_FUN;
+  }
+  else if(strcmpi(OPCode, "SRLV") == 0){
+     return SRLV_FUN;
+  }
 
   return "FUN - ERRO!";
 }

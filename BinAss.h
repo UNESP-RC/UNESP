@@ -505,7 +505,7 @@ void MFHI_B(char* binary){
 	strcat(instruction, "MFHI ");
 
 	// Registrador rd
-	substring(result, binary, 6, 5);
+	substring(result, binary, 21, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 

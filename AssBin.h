@@ -329,11 +329,14 @@ void MFHI(char* instruction){
 
   strcat(binary, getOPCode("MFHI"));
 
+  strcat(binary, "00000"); //Shamt
+
   //Register rd
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
+
   strcat(binary, getFunction("MFHI"));
 
   printf("%s\n", binary);
@@ -348,11 +351,14 @@ void MFLO(char* instruction){
 
   strcat(binary, getOPCode("MFLO"));
 
+  strcat(binary, "00000"); //Shamt
+
   //Register rd
   getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
+
   strcat(binary, getFunction("MFLO"));
 
   printf("%s\n", binary);
@@ -480,11 +486,11 @@ void SLLV(char* instruction){
   strcat(binary, getOPCode("SLLV"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 3);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rd
@@ -534,11 +540,11 @@ void SRLV(char* instruction){
   strcat(binary, getOPCode("SRLV"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 3);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   //Register rd
