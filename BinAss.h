@@ -183,7 +183,7 @@ void ORI_B(char* binary){
 	char result[255] = "";
 	char aux[10] = "";
 
-	strcat(instruction, "ORI");
+	strcat(instruction, "ORI ");
 
 	substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
