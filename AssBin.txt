@@ -1,2 +1,2 @@
 DIV $t2, $t3
-DIVU $t2, $t3, 
+DIVU $t2, $t3
