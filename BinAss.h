@@ -839,15 +839,6 @@ void LHU_B(char* binary){
 	char result[255] = "";
 	char aux[10] = "";
 
-	strcat(instruction, "SLL ");
-
-	//Register rd
-    substring(result, binary, 16, 5);
-	getNameRegister(aux, result);
-	strcat(instruction, aux);
-	strcat(instruction, ", ");
-
-	//Register rt
 	strcat(instruction, "LHU ");
 
     //Register rt

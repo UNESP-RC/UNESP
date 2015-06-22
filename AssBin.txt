@@ -1,2 +1,33 @@
+ADD $s1, $s2, $s3
+SUB $s1, $s2, $s3
+ADDI $s1, $s2, 10
+ADDU $s1, $s2, $s3
+SUBU $s1, $s2, $s3
+ADDIU $s1, $s2, 10
+MULT $s1, $s2
+MULTU $s1, $s2
+DIV $s1, $s2
+DIVU $s1, $s2
 MFHI $s1
 MFLO $s1
+LW $s1, 10($s3)
+SW $s1, 10($s3)
+LHU $s1, 10($s3)
+SH $s1, 10($s3)
+LBU $s1, 10($s3)
+SB $s1, 10($s3)
+LUI $s1, 10
+AND $s1, $s2, $s3
+OR $s1, $s2, $s3
+NOR $s1, $s2, $s3
+ANDI $s1, $s2, 10
+ORI $s1, $s2, 10
+SLL $s1, $s2, 10
+SRL $s1, $s2, 10
+BEQ $s1, $s2, LABEL0
+BNE $s1, $s2, LABEL0
+SLT $s1, $s2, $s3
+SLTI $s1, $s2, 10
+J LABEL0
+JR $ra
+JAL 10
