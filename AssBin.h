@@ -912,11 +912,11 @@ void DIV(char* instruction){
   strcat(binary, getOPCode("DIV"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt
@@ -935,11 +935,11 @@ void DIVU(char* instruction){
   strcat(binary, getOPCode("DIVU"));
 
   //Register rs
-  getRegisterByType(result, instruction, 2);
+  getRegisterByType(result, instruction, 1);
   strcat(binary, getRegister(result));
 
   //Register rt
-  getRegisterByType(result, instruction, 3);
+  getRegisterByType(result, instruction, 2);
   strcat(binary, getRegister(result));
 
   strcat(binary, "00000"); //Shamt

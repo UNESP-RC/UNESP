@@ -443,7 +443,7 @@ void DIV_B(char* binary){
 
 	strcat(instruction, "DIV ");
 
-	substring(result, binary, 16, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
@@ -630,26 +630,26 @@ void SLL_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "SLL ");
-	
+
 	//Register rd
     substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Register rt
     substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Shamt
     substring(result, binary, 21, 5);
     binaryToDecimal(result, result);
-    strcat(instruction, result);	
-	
+    strcat(instruction, result);
+
 	printf("%s\n", instruction);
-	writeToFile(instruction);	
+	writeToFile(instruction);
 }
 void SRL_B(char* binary){
 	char instruction[255] = "";
@@ -657,26 +657,26 @@ void SRL_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "SRL ");
-	
+
 	//Register rd
     substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Register rt
     substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Shamt
     substring(result, binary, 21, 5);
     binaryToDecimal(result, result);
-    strcat(instruction, result);	
-	
+    strcat(instruction, result);
+
 	printf("%s\n", instruction);
-	writeToFile(instruction);	
+	writeToFile(instruction);
 }
 void SRA_B(char* binary){
 	char instruction[255] = "";
@@ -684,26 +684,26 @@ void SRA_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "SRA ");
-	
+
 	//Register rd
     substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Register rt
     substring(result, binary, 11, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Shamt
     substring(result, binary, 21, 5);
     binaryToDecimal(result, result);
-    strcat(instruction, result);	
-	
+    strcat(instruction, result);
+
 	printf("%s\n", instruction);
-	writeToFile(instruction);	
+	writeToFile(instruction);
 }
 void SLLV_B(char* binary){
 	char instruction[255] = "";
@@ -841,13 +841,13 @@ void LHU_B(char* binary){
 	char aux[10] = "";
 
 	strcat(instruction, "SLL ");
-	
+
 	//Register rd
     substring(result, binary, 16, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
-	
+
 	//Register rt
 	strcat(instruction, "LHU ");
 
@@ -909,7 +909,7 @@ void DIVU_B(char* binary){
 
 	strcat(instruction, "DIVU");
 
-	substring(result, binary, 16, 5);
+	substring(result, binary, 6, 5);
 	getNameRegister(aux, result);
 	strcat(instruction, aux);
 	strcat(instruction, ", ");
