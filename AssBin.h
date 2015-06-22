@@ -1138,13 +1138,19 @@ void JAL(char* instruction){
 
   strcat(binary, getOPCode("JAL"));
 
+   strcat(binary, "00000");//rs
+
+   strcat(binary, "00000");//rt
+
+
   //Find number
-  minLen = pos(instruction, ',', 2) + 1;
+  minLen = pos(instruction, ' ', 1) + 1;
   maxLen = strlen(instruction) - minLen;
   substring(result, instruction, minLen, maxLen);
   strcpy(result, trim(result));
   decimalToBinary(result, result, 16);
   strcat(binary, result);
+
 
   printf("%s\n", binary);
   writeToFile(binary);
